@@ -9,7 +9,7 @@ INCOME_FREQ_CHOICES = (
     ('Monthly', 'monthly')
 )
 
-# Create your models here.
+
 class CoreApplication(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified_date = models.DateTimeField(auto_now=True)
@@ -32,9 +32,15 @@ class CoreApplication(models.Model):
     is_signed = models.BooleanField()
     signed_date = models.DateTimeField()
 
+    class Meta:
+        ordering = ('created_date',)
+
+    def save(self, *args, **kwargs):
+        super(CoreApplication, self).save(*args, **kwargs)
+
 
 class Child(models.Model):
-    application = models.ForeignKey(CoreApplication)
+    application = models.ForeignKey(CoreApplication, related_name='child')
     first_name = models.CharField(max_length=255)
     middle_initial = models.CharField(max_length=1)
     last_name = models.CharField(max_length=255)
@@ -44,7 +50,7 @@ class Child(models.Model):
 
 
 class Adult(models.Model):
-    application = models.ForeignKey(CoreApplication)
+    application = models.ForeignKey(CoreApplication, related_name='adult')
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     work_income = models.IntegerField()

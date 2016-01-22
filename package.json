@@ -1,0 +1,50 @@
+{
+  "name": "eat_school_lunch",
+  "version": "1.0.0",
+  "description": "Eat School Lunch entry from Justin and Emily",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Justin McCammon",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "babelify": "6.2.0",
+    "browserify": "13.0.0",
+    "browserify-incremental": "3.0.1",
+    "del": "2.2.0",
+    "gulp": "3.9.0",
+    "gulp-autoprefixer": "3.1.0",
+    "gulp-changed": "1.3.0",
+    "gulp-clean": "0.3.1",
+    "gulp-define-module": "0.1.4",
+    "gulp-ignore": "2.0.1",
+    "gulp-notify": "2.2.0",
+    "gulp-plumber": "1.0.1",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "2.1.1",
+    "gulp-sequence": "0.4.4",
+    "gulp-shell": "0.5.1",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-util": "3.0.7",
+    "gulp-watch": "4.3.5",
+    "pretty-hrtime": "1.0.1",
+    "require-dir": "0.3.0",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.1.0",
+    "watchify": "3.7.0"
+  },
+  "dependencies": {
+    "cookie-getter": "1.0.1",
+    "jquery": "2.2.0",
+    "lodash": "4.0.0"
+  }
+}
