@@ -1,6 +1,5 @@
-
 {
-  "name": "Eat School Lunch",
+  "name": "eat_school_lunch",
   "version": "1.0.0",
   "description": "Eat School Lunch entry from Justin and Emily",
   "main": "server.js",
@@ -9,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+"
+    "url": ""
   },
   "author": "Justin McCammon",
   "license": "ISC",

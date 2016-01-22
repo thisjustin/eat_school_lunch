@@ -56,4 +56,16 @@ docs/_build/
 # PyBuilder
 target/
 
-.idea/
+*.swp
+*.swo
+*.pyc
+*.idea
+.DS_Store
+*.log
+*.sqlite3
+*.ini
+node_modules/*
+static/*
+esl/development.py
+build/*
+browserify-cache.json
