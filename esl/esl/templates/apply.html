@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock head %}
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/apply.css" />
+{% endblock css %}
+
+{% block content %}
+    {{ block.super }}
+    <section class="step step-1">
+        <section class="instructions">
+            <h1>
+                {% trans 'Assitance Programs' %}
+            </h1>
+            <p>
+                {% blocktrans %}
+                    Does any member of you household participate in one of the following programs? Please select one.
+                {% endblocktrans %}
+            </p>
+            <p>
+                {% blocktrans %}
+                    If so, all members of your household will automatically qualify for free or reduced priced lunches.
+                    You will need your case number.
+                {% endblocktrans %}
+            </p>
+            <p>
+                {% blocktrans %}
+                    If not, it is OK.
+                    You do not have to be part of one of these programs to qualify for free or reduced priced lunches.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <input type="radio" name="programs" value="snap"/>
+            <label>{% trans 'SNAP - Supplemental Nutrition Assistance Program' %}</label>
+            <input type="radio" name="programs" value="fdpir"/>
+            <label>{% trans 'FDPIR - Food Distribution Program on Indian Reservations' %}</label>
+            <input type="radio" name="programs" value="tanf"/>
+            <label>{% trans 'TANF - Temporary Assistance for Needy Families' %}</label>
+            <input type="radio" name="programs" value="none"/>
+            <label>{% trans 'None' %}</label>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+{% endblock content %}
+
+{% block js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pages/apply.js"/></script>
+{% endblock js %}
