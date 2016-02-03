@@ -1,0 +1,47 @@
+.btn {
+    display: inline-block;
+    width: 10em;
+    height: 3.85em;
+    @include border-radius(0.1666666em);
+
+    p {
+        color: $white;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 2em;
+        letter-spacing: 0.125em;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0.3em 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+    }
+}
+
+.btn-back {
+    background-color: $gray;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $gray-dark;
+    }
+}
+
+.btn-next {
+    background-color: $blue;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $blue-dark;
+    }
+
+    &.disabled {
+        background-color: $gray;
+    }
+}

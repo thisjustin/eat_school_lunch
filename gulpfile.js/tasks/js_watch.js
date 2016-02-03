@@ -65,7 +65,7 @@ gulp.task('js:watch', function(callback) {
                 // Report compile errors
                 .on('error', handleErrors)
                 // Use vinyl-source-stream to make the
-                // stream gulp compatible. Specifiy the
+                // stream gulp compatible. Specify the
                 // desired output filename here.
                 .pipe(source(bundleConfig.outputName))
                 // Specify the output destination

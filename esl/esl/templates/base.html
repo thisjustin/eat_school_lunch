@@ -20,22 +20,47 @@
             <p class="browserupgrade">{% trans 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.' %}</p>
         <![endif]-->
         <section class="main-wrapper">
-            <header>
-                <div>
+            <header class="global-header">
+                <div class="nav-menu">
                     <i class="material-icons">apps</i>
                 </div>
-                <nav>
-
-                </nav>
-                <p class="page-title">
-                    {% block page-title %}{% endblock page-title %}
-                </p>
                 <p class="steps">
                     {% trans 'Step' %}<span class="current-step"></span>
                     <span class="step-of">{% trans 'of' %}</span>
                     <span class="total-steps"></span>
                 </p>
             </header>
+            <nav>
+                 <div class="home-nav">
+                     <p>Home</p>
+                 </div>
+                <ol>
+                    <li>
+                        <p>Instructions</p>
+                        <!-- TODO complete icon -->
+                    </li>
+                    <li>
+                        <p>Step</p>
+                        <!-- TODO complete icon -->
+                    </li>
+                    <li>
+                        <p>Step</p>
+                        <!-- TODO complete icon -->
+                    </li>
+                    <li>
+                        <p>Step</p>
+                        <!-- TODO complete icon -->
+                    </li>
+                    <li>
+                        <p>Step</p>
+                        <!-- TODO complete icon -->
+                    </li>
+                    <li>
+                        <p>Step</p>
+                        <!-- TODO complete icon -->
+                    </li>
+                </ol>
+            </nav>
             {% block content %}{% endblock content %}
         </section>
     </body>

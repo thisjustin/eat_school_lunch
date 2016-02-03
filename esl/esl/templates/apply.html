@@ -11,23 +11,23 @@
 
 {% block content %}
     {{ block.super }}
-    <section class="step step-1">
+    <section class="step step-assistance" data-step="ASSISTANCE">
         <section class="instructions">
             <h1>
                 {% trans 'Assitance Programs' %}
             </h1>
-            <p>
+            <p class="body-text">
                 {% blocktrans %}
                     Does any member of you household participate in one of the following programs? Please select one.
                 {% endblocktrans %}
             </p>
-            <p>
+            <p class="body-text">
                 {% blocktrans %}
                     If so, all members of your household will automatically qualify for free or reduced priced lunches.
                     You will need your case number.
                 {% endblocktrans %}
             </p>
-            <p>
+            <p class="body-text">
                 {% blocktrans %}
                     If not, it is OK.
                     You do not have to be part of one of these programs to qualify for free or reduced priced lunches.
@@ -35,14 +35,508 @@
             </p>
         </section>
         <form>
-            <input type="radio" name="programs" value="snap"/>
-            <label>{% trans 'SNAP - Supplemental Nutrition Assistance Program' %}</label>
-            <input type="radio" name="programs" value="fdpir"/>
-            <label>{% trans 'FDPIR - Food Distribution Program on Indian Reservations' %}</label>
-            <input type="radio" name="programs" value="tanf"/>
-            <label>{% trans 'TANF - Temporary Assistance for Needy Families' %}</label>
-            <input type="radio" name="programs" value="none"/>
-            <label>{% trans 'None' %}</label>
+            <div class="form-group">
+                <label class="sr-only" for="programs">{% trans 'SNAP - Supplemental Nutrition Assistance Program' %}</label>
+                <label>
+                    <input type="radio" name="programs" value="SNAP"/>
+                    {% trans 'SNAP - Supplemental Nutrition Assistance Program' %}
+                </label>
+                <label class="sr-only" for="programs">{% trans 'FDPIR - Food Distribution Program on Indian Reservations' %}</label>
+                <label>
+                    <input type="radio" name="programs" value="FDPIR"/>
+                    {% trans 'FDPIR - Food Distribution Program on Indian Reservations' %}
+                </label>
+                <label class="sr-only" for="programs">{% trans 'TANF - Temporary Assistance for Needy Families' %}</label>
+                <label>
+                    <input type="radio" name="programs" value="TANF"/>
+                    {% trans 'TANF - Temporary Assistance for Needy Families' %}
+                </label>
+                <label class="sr-only" for="programs">{% trans 'None' %}</label>
+                <label>
+                    <input type="radio" name="programs" value="none" checked="true"/>
+                    {% trans 'None' %}
+                </label>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-case-number" data-step="CASE_NUMBER">
+        <section class="instructions">
+            <h1>
+                {% trans 'Assitance Program Case Number' %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please enter your case number for:
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group snap">
+                <h2>SNAP</h2>
+                <label for="snap-number">{% trans 'Supplemental Nutrition Assistance Program' %}</label>
+                <input class="form-control" type="text" name="snap-number"/>
+            </div>
+            <div class="form-group fdpir">
+                <h2>FDPIR</h2>
+                <label for="fdpir-number">{% trans 'Food Distribution Program on Indian Reservations' %}</label>
+                <input class="form-control"  type="text" name="fdpir-number"/>
+            </div>
+            <div class="form-group tanf">
+                <h2>TANF</h2>
+                <label for="tanf-number">{% trans 'Temporary Assistance for Needy Families' %}</label>
+                <input class="form-control"  type="text" name="tanf-number"/>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-2">
+        <section class="instructions">
+            <h1>
+                {% trans "Adults in Your Household" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please list the full names of every adult in your household.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group adults">
+                <label for="adult-name">{% trans 'Adult Full Name' %}</label>
+                <input class="form-control"  type="text" name="adult-name"/>
+            </div>
+            <div class="form-group adults">
+                <label for="adult-name">{% trans 'Adult Full Name' %}</label>
+                <input class="form-control"  type="text" name="adult-name"/>
+            </div>
+
+            <div class="btn btn-success">
+                <p>{% trans '+ add adult' %}</p>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <script type="x/esl-template" id="adult-full-name-template">
+            <div class="form-group adults">
+                <label for="adult-name">{% trans 'Adult Full Name' %}</label>
+                <input class="form-control"  type="text" name="adult-name"/>
+            </div>
+        </script>
+    </section>
+
+    <section class="step step-3">
+        <section class="instructions">
+            <h1>
+                {% trans "Adult Signer" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    One adult needs to sign this application. Which adult will be sigining? Select one.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group signing-adult">
+
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <script type="x/esl-template" id="signing-adult-template">
+            <label>
+                <input type="radio" name="programs" value="<%= adultName %>"/>
+                <%= adultName %>
+            </label>
+        </script>
+    </section>
+
+    <section class="step step-4">
+        <section class="instructions">
+            <h1>
+                {% trans "Adult Signer Social Security Number" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please enter the last four digits of the signing adult's social security number.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group signing-adult-ssn">
+                <h3 class="adult-name"></h3>
+                <label for="signing-adult-ssn">Social Security Number - Last Four Digits</label>
+                <input class="form-control"  type="text" name="signing-adult-ssn"/>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-5">
+        <section class="instructions">
+            <h1>
+                {% trans "Adult Income" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please estimate the income for each adult in your household, one at a time.
+                    How much money does <span class="adult-name"></span> make?
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <h3 class="adult-name"></h3>
+            <div class="form-group adult-income">
+                <label>
+                    <input type="radio" name="income" value="monthly"/>
+                    {% trans 'Monthly' %}
+                </label>
+                <label>
+                    <input type="radio" name="income" value="twice-monthly"/>
+                    {% trans '2x Monthly' %}
+                </label>
+                <label>
+                    <input type="radio" name="income" value="biweekly"/>
+                    {% trans 'Bi-Weekly' %}
+                </label>
+                <label>
+                    <input type="radio" name="income" value="weekly"/>
+                    {% trans 'Weekly' %}
+                </label>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="income"/>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-6">
+        <section class="instructions">
+            <h1>
+                {% trans "Children in Your Household" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please list the full names of every child in your household.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group children">
+                <label for="child-name">{% trans 'Child Full Name' %}</label>
+                <input class="form-control"  type="text" name="child-name"/>
+            </div>
+            <div class="form-group children">
+                <label for="child-name">{% trans 'Child Full Name' %}</label>
+                <input class="form-control"  type="text" name="child-name"/>
+            </div>
+
+            <div class="btn btn-success">
+                <p>{% trans '+ add child' %}</p>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <script type="x/esl-template" id="child-full-name-template">
+            <div class="form-group children">
+                <label for="child-name">{% trans 'Child Full Name' %}</label>
+                <input class="form-control"  type="text" name="child-name"/>
+            </div>
+        </script>
+    </section>
+
+    <section class="step step-7">
+        <section class="instructions">
+            <h1>
+                {% trans "Child Circumstance" %}
+            </h1>
+            <h2><span class="child-name"></span></h2>
+            <p class="body-text">
+                {% blocktrans %}
+                    Do any of the following options describe
+                {% endblocktrans %}
+                <span class="child-name"></span>
+                {% blocktrans %}
+                ? Select one or many.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group child-circumstance">
+                <input class="form-control" type="checkbox" name="student"/>
+                <label for="student">{% trans 'Student' %}</label>
+                <input class="form-control" type="checkbox" name="foster"/>
+                <label for="foster">{% trans 'Foster' %}</label>
+                <input class="form-control" type="checkbox" name="homeless"/>
+                <label for="homeless">{% trans 'Homeless, Migrant or Runaway' %}</label>
+                <input class="form-control" type="checkbox" name="none"/>
+                <label for="none">{% trans 'None' %}</label>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-8">
+        <section class="instructions">
+            <h1>
+                {% trans "Child Income" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please estimate the income for each child in your household, one at a time.
+                    How much money does <span class="child-name"></span> make?
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <h3 class="child-name"></h3>
+            <div class="form-group child-income">
+                <label>
+                    <input type="radio" name="income" value="monthly"/>
+                    {% trans 'Monthly' %}
+                </label>
+                <label>
+                    <input type="radio" name="income" value="twice-monthly"/>
+                    {% trans '2x Monthly' %}
+                </label>
+                <label>
+                    <input type="radio" name="income" value="biweekly"/>
+                    {% trans 'Bi-Weekly' %}
+                </label>
+                <label>
+                    <input type="radio" name="income" value="weekly"/>
+                    {% trans 'Weekly' %}
+                </label>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="income"/>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+
+
+
+    <section class="step step-race">
+        <section class="instructions">
+            <h1>
+                {% trans "Children's Racial & Ethnic Identities" %}
+            </h1>
+            <h2>
+                {% trans 'Optional' %}
+            </h2>
+            <p class="body-text">
+                {% blocktrans %}
+                    This information helps to make sure we are fully serving our communty.
+                    Responding to this section is <span class="underline">optional</span> and
+                    does not affect your children's eligibility for free or reduced priced meals.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group ethnicity">
+                <h2>
+                    {% trans "Children's Ethnicity" %}
+                    <span class="aside">({% trans 'select one' %})</span>
+                </h2>
+                <input class="form-control" type="checkbox" name="hispanic"/>
+                <label for="hispanic">{% trans 'Hispanic or Latino' %}</label>
+                <input class="form-control" type="checkbox" name="not-hispanic"/>
+                <label for="not-hispanic">{% trans 'Not Hispanic or Latino' %}</label>
+            </div>
+            <div class="form-group race">
+                <h2>
+                    {% trans "Children's Race" %}
+                    <span class="aside">({% trans 'select one or more' %})</span>
+                </h2>
+                <input class="form-control" type="checkbox" name="american-indian"/>
+                <label for="american-indian">{% trans 'American Indian or Alaskan Native' %}</label>
+                <input class="form-control" type="checkbox" name="asian"/>
+                <label for="asian">{% trans 'Asian' %}</label>
+                <input class="form-control" type="checkbox" name="black"/>
+                <label for="black">{% trans 'Black or African American' %}</label>
+                <input class="form-control" type="checkbox" name="hawaiian"/>
+                <label for="hawaiian">{% trans 'Native Hawaiian or Other Pacific Islander' %}</label>
+                <input class="form-control" type="checkbox" name="white"/>
+                <label for="white">{% trans 'White' %}</label>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-contact">
+        <section class="instructions">
+            <h1>
+                {% trans "Contact Info" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please enter your contact info.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-agreements">
+        <section class="instructions">
+            <h1>
+                {% trans "Read Statements" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    You have the opportunity to read the following statements.
+                    Click on the link to read the full text.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-sign">
+        <section class="instructions">
+            <h1>
+                {% trans "Sign & Date" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    As the signing adult, enter your name and today's date.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-success">
+        <section class="instructions">
+            <h1>
+                {% trans "Success!" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    You have successfully filled out the 2016-2017 School Lunch Application
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+
         </form>
 
         <section class="form-nav">
@@ -58,5 +552,8 @@
 
 {% block js %}
     {{ block.super }}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/pages/apply.js"/></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pages/apply.js"></script>
+    <script type="text/javascript">
+        ESL.Apply.init();
+    </script>
 {% endblock js %}

@@ -1,1 +1,76 @@
 @import 'base';
+
+.step {
+    text-align: center;
+    padding: 2em;
+    width: 100%;
+
+    &:not(.step-assistance) {
+        display: none;
+    }
+
+    h1 {
+        margin: 0;
+        font-family: 'Lora', serif;
+        font-weight: 700;
+        font-size: 1.6666666em;
+        color: $off-black;
+    }
+
+    .body-text, label {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        font-size: 1.2em;
+        color: $off-black;
+    }
+
+    .form-nav {
+        margin: 2em auto 0 auto;
+        width: 70%;
+        @include clearfix();
+
+        .btn-back {
+            float: left;
+        }
+
+        .btn-next {
+            float: right;
+        }
+    }
+}
+
+.step-assistance {
+    label:not(.sr-only) {
+        display: block;
+    }
+}
+
+.step-case-number {
+    .form-group {
+        display: none;
+    }
+}
+
+@media (max-width: $screen-xs-min) {
+
+}
+
+@media (min-width: $screen-sm-min) {
+
+}
+
+@media (min-width: $screen-md-min) {
+    .step {
+        width: 50%;
+        float: left;
+    }
+
+}
+
+@media (min-width: $screen-lg-min) {
+
+}
+
+@media (min-width: $screen-xl-min) {
+
+}

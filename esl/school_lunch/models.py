@@ -9,12 +9,19 @@ INCOME_FREQ_CHOICES = (
     ('Monthly', 'monthly')
 )
 
+ASSISTANCE_CHOICES = (
+    ('SNAP', 'SNAP'),
+    ('FDPIR', 'FDPIR'),
+    ('TANF', 'TANF')
+)
+
 
 class CoreApplication(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified_date = models.DateTimeField(auto_now=True)
     approved_date = models.DateTimeField()
 
+    assistance_type = models.CharField(max_length=10, choices=ASSISTANCE_CHOICES, null=True)
     assistance_case_number = models.CharField(max_length=255)
     child_income = models.IntegerField()
     child_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES)

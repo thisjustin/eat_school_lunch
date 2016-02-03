@@ -20,6 +20,11 @@ module.exports = _.assign({
                 outputName: 'home.js'
             },
             {
+                entries: config.sourceDirectory + '/js/pages/apply.js',
+                dest: config.publicDirectory + '/js/pages',
+                outputName: 'apply.js'
+            },
+            {
                 entries: config.sourceDirectory + '/js/util/common.js',
                 dest: config.publicDirectory + '/js/util',
                 outputName: 'common.js'
