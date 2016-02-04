@@ -108,7 +108,7 @@
         </section>
     </section>
 
-    <section class="step step-2">
+    <section class="step step-household-adults" data-step="HOUSEHOLD_ADULTS">
         <section class="instructions">
             <h1>
                 {% trans "Adults in Your Household" %}
@@ -129,7 +129,7 @@
                 <input class="form-control"  type="text" name="adult-name"/>
             </div>
 
-            <div class="btn btn-success">
+            <div class="btn btn-success add-adult">
                 <p>{% trans '+ add adult' %}</p>
             </div>
         </form>
@@ -138,7 +138,7 @@
             <div class="btn btn-back">
                 <p>{% trans 'Back' %}</p>
             </div>
-            <div class="btn btn-next">
+            <div class="btn btn-next disabled">
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
@@ -151,7 +151,7 @@
         </script>
     </section>
 
-    <section class="step step-3">
+    <section class="step step-adult-signer" data-step="ADULT_SIGNER">
         <section class="instructions">
             <h1>
                 {% trans "Adult Signer" %}
@@ -162,11 +162,8 @@
                 {% endblocktrans %}
             </p>
         </section>
-        <form>
-            <div class="form-group signing-adult">
 
-            </div>
-        </form>
+        <form></form>
 
         <section class="form-nav">
             <div class="btn btn-back">
@@ -179,13 +176,13 @@
 
         <script type="x/esl-template" id="signing-adult-template">
             <label>
-                <input type="radio" name="programs" value="<%= adultName %>"/>
+                <input type="radio" name="programs" value="<%= adultName %>" <% if (selected) { %> checked="true" <% } %>/>
                 <%= adultName %>
             </label>
         </script>
     </section>
 
-    <section class="step step-4">
+    <section class="step step-adult-signer-ssn" data-step="ADULT_SIGNER_SSN">
         <section class="instructions">
             <h1>
                 {% trans "Adult Signer Social Security Number" %}
@@ -208,13 +205,13 @@
             <div class="btn btn-back">
                 <p>{% trans 'Back' %}</p>
             </div>
-            <div class="btn btn-next">
+            <div class="btn btn-next disabled">
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
     </section>
 
-    <section class="step step-5">
+    <section class="step step-adult-income" data-step="ADULT_INCOME">
         <section class="instructions">
             <h1>
                 {% trans "Adult Income" %}
@@ -261,7 +258,7 @@
         </section>
     </section>
 
-    <section class="step step-6">
+    <section class="step step-household-children" data-step="HOUSEHOLD_CHILDREN">
         <section class="instructions">
             <h1>
                 {% trans "Children in Your Household" %}
@@ -304,7 +301,7 @@
         </script>
     </section>
 
-    <section class="step step-7">
+    <section class="step step-children-circumstances" data-step="CHILDREN_CIRCUMSTANCES">
         <section class="instructions">
             <h1>
                 {% trans "Child Circumstance" %}
@@ -343,7 +340,7 @@
         </section>
     </section>
 
-    <section class="step step-8">
+    <section class="step step-children-income" data-step="CHILDREN_INCOME">
         <section class="instructions">
             <h1>
                 {% trans "Child Income" %}
@@ -393,7 +390,7 @@
 
 
 
-    <section class="step step-race">
+    <section class="step step-race" data-step="RACE">
         <section class="instructions">
             <h1>
                 {% trans "Children's Racial & Ethnic Identities" %}
@@ -448,7 +445,7 @@
         </section>
     </section>
 
-    <section class="step step-contact">
+    <section class="step step-contact" data-step="CONTACT">
         <section class="instructions">
             <h1>
                 {% trans "Contact Info" %}
@@ -473,7 +470,7 @@
         </section>
     </section>
 
-    <section class="step step-agreements">
+    <section class="step step-agreements" data-step="AGREEMENTS">
         <section class="instructions">
             <h1>
                 {% trans "Read Statements" %}
@@ -499,7 +496,7 @@
         </section>
     </section>
 
-    <section class="step step-sign">
+    <section class="step step-sign" data-step="SIGN">
         <section class="instructions">
             <h1>
                 {% trans "Sign & Date" %}
@@ -524,7 +521,7 @@
         </section>
     </section>
 
-    <section class="step step-success">
+    <section class="step step-success" data-step="SUCCESS">
         <section class="instructions">
             <h1>
                 {% trans "Success!" %}

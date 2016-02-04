@@ -71,6 +71,10 @@ module.exports = class BaseForm {
         this.elem.hide();
     }
 
+    back() {
+        console.error('Back not implemented')
+    }
+
     setFormError(msg) {
         /*
          Output global form messages, like ajax submission errors

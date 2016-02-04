@@ -10,7 +10,14 @@ module.exports = class AssistanceForm extends BaseForm {
     submit() {
         super.submit();
 
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CASE_NUMBER);
+        if (global.ESL.Apply.getApp().assistance_type) {
+            // gather case number
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().CASE_NUMBER);
+        } else {
+            // not a part of any assistance program
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_ADULTS);
+        }
+
     }
 
     getValidData() {

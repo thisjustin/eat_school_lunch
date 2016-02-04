@@ -66,4 +66,5 @@ class Adult(models.Model):
     public_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES)
     other_income = models.IntegerField()
     other_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES)
+    is_signer = models.BooleanField(default=False)
 

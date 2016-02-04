@@ -3,6 +3,7 @@
     width: 10em;
     height: 3.85em;
     @include border-radius(0.1666666em);
+    background-color: $gray;
 
     p {
         color: $white;
@@ -43,5 +44,20 @@
 
     &.disabled {
         background-color: $gray;
+    }
+}
+
+.btn-success {
+    background-color: $blue;
+    width: 8em;
+    height: 2.85em;
+
+    p {
+        font-size: 1em;
+        padding: 0.6em 0;
+    }
+
+    &:hover {
+        background-color: $blue-dark;
     }
 }
