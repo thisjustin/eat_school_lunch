@@ -21,46 +21,12 @@
         <![endif]-->
         <section class="main-wrapper">
             <header class="global-header">
-                <div class="nav-menu">
-                    <i class="material-icons">apps</i>
-                </div>
                 <p class="steps">
                     {% trans 'Step' %}<span class="current-step"></span>
                     <span class="step-of">{% trans 'of' %}</span>
                     <span class="total-steps"></span>
                 </p>
             </header>
-            <nav>
-                 <div class="home-nav">
-                     <p>Home</p>
-                 </div>
-                <ol>
-                    <li>
-                        <p>Instructions</p>
-                        <!-- TODO complete icon -->
-                    </li>
-                    <li>
-                        <p>Step</p>
-                        <!-- TODO complete icon -->
-                    </li>
-                    <li>
-                        <p>Step</p>
-                        <!-- TODO complete icon -->
-                    </li>
-                    <li>
-                        <p>Step</p>
-                        <!-- TODO complete icon -->
-                    </li>
-                    <li>
-                        <p>Step</p>
-                        <!-- TODO complete icon -->
-                    </li>
-                    <li>
-                        <p>Step</p>
-                        <!-- TODO complete icon -->
-                    </li>
-                </ol>
-            </nav>
             {% block content %}{% endblock content %}
         </section>
     </body>

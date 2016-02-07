@@ -81,6 +81,10 @@ global.ESL = {
 
          Returns boolean
          */
+        if (value === '') {
+            return false;
+        }
+
         try {
             return !isNaN(value) && parseInt(Number(value), 10) == value;
         } catch(err) {

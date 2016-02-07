@@ -20,7 +20,7 @@ module.exports = class AdultSignerSSNForm extends BaseForm {
     updateForm() {
         this.signingAdult = _.find(global.ESL.Apply.getApp().adults, {is_signer: true});
 
-        this.elem.find('.adult-name').text(this.signingAdult.name);
+        this.elem.find('.adult-name').text(`${this.signingAdult.first_name} ${this.signingAdult.last_name}`);
     }
 
     show() {
@@ -29,7 +29,7 @@ module.exports = class AdultSignerSSNForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_SIGNER_SSN);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_SIGNER);
     }
 
     submit() {
@@ -43,7 +43,7 @@ module.exports = class AdultSignerSSNForm extends BaseForm {
         let ssn = this.elem.find('input[name=signing-adult-ssn]').val();
         let adults = global.ESL.Apply.getApp().adults;
         let adultIndex = _.findIndex(adults, function(item) {
-            return item.name === _this.signingAdult.name;
+            return item.uid === _this.signingAdult.uid;
         });
 
         // ensure ssn is exactly 4 digits

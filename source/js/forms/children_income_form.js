@@ -2,10 +2,10 @@
 
 let BaseForm = require('./base_form');
 
-module.exports = class CaseNumberForm extends BaseForm {
+module.exports = class ChildrenIncomeForm extends BaseForm {
     constructor(cfg={}) {
         super(cfg);
-
+        this.adult = false;
         this.configureEventHandlers();
     }
 
@@ -18,33 +18,34 @@ module.exports = class CaseNumberForm extends BaseForm {
     }
 
     show() {
-        this.elem.find(`.form-group.${global.ESL.Apply.getApp().assistance_type.toLowerCase()}`).show();
         super.show();
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ASSISTANCE);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_CIRCUMSTANCES);
     }
 
     submit() {
         super.submit();
-
         global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
     }
 
     getValidData() {
-        let caseNumber = this.elem.find('input:visible').val();
+        let incomeFrequency = this.elem.find('input[name=income-freq]:checked').val();
+        let income = this.elem.find('input[name=income]').val();
 
-        if (!caseNumber) {
+        // verify income is valid
+        if (global.ESL.isInt(income)) {
+            this.isValid = true;
+        } else {
             this.isValid = false;
-            this.errors.push('Invalid case number');
+            this.errors.push('Invalid income (must be numbers only)');
             return;
         }
 
-        this.isValid = true;
-
         return {
-            assistance_case_number: caseNumber
+            child_income: income,
+            child_income_frequency: incomeFrequency
         }
     }
 };

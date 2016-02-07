@@ -16,7 +16,8 @@ module.exports = class AdultSignerForm extends BaseForm {
 
         global.ESL.Apply.getApp().adults.forEach(function(adult, idx) {
             output += _this.adultTemplate({
-                adultName: adult.name,
+                uid: adult.uid,
+                adultName: `${adult.first_name} ${adult.last_name}`,
                 selected: idx === 0 // select first adult by default
             });
         });
@@ -44,7 +45,7 @@ module.exports = class AdultSignerForm extends BaseForm {
         let signingAdult = this.elem.find('input:checked').val();
 
         adults.forEach(function(adult) {
-            adult.is_signer = adult.name === signingAdult;
+            adult.is_signer = adult.uid === signingAdult;
         });
 
         this.isValid = true;

@@ -27,21 +27,6 @@ body {
     height: 4.5em;
     @include clearfix();
 
-    .nav-menu {
-        cursor: pointer;
-        color: $blue;
-        float: left;
-
-        i {
-            font-size: 3.5em;
-            line-height: 1.25em;
-        }
-
-        &:hover {
-            color: $blue-dark;
-        }
-    }
-
     .steps {
         float: left;
         display: none;
@@ -49,21 +34,6 @@ body {
         font-weight: 400;
         font-size: 1.1em;
         color: $gray-dark;
-    }
-}
-
-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    @include transform-translate(-100%, null);
-    background-color: $white;
-    width: 20em;
-
-    transition: 300ms ease-out all;
-
-    &.active {
-        @include transform-translate(100%, null);
     }
 }
 
@@ -78,13 +48,6 @@ nav {
 }
 
 @media (min-width: $screen-md-min) {
-    // switch to sidebar nav
-    nav {
-        position: relative;
-        width: 20%;
-        float: left;
-        @include transform-translate(0, 0);
-    }
 
 }
 

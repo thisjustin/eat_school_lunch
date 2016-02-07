@@ -1,6 +1,7 @@
 'use strict';
 
 let BaseForm = require('./base_form');
+let uuid = require('uuid');
 
 module.exports = class HouseholdAdultsForm extends BaseForm {
     constructor(cfg={}) {
@@ -40,15 +41,19 @@ module.exports = class HouseholdAdultsForm extends BaseForm {
     }
 
     getValidData() {
-        let adultNames = this.elem.find('input[name=adult-name]');
+        let adultNames = this.elem.find('.form-group.adults');
         let adults = [];
 
         $.each(adultNames, function(idx, adult) {
-            let name = $(adult).val();
+            let firstName = $(adult).find('input[name=adult-first-name]').val();
+            let lastName = $(adult).find('input[name=adult-last-name]').val();
 
-            if (name.length > 0) {
+            if (firstName.length > 0 && lastName.length > 0) {
                 adults.push({
-                    name: name
+                    uid: uuid.v4(), // give each adult a unique identifier
+                    first_name: firstName,
+                    last_name: lastName,
+                    income_complete: false
                 });
             }
         });
