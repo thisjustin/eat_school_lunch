@@ -1,9 +1,16 @@
 @import 'base';
 
+.global-header {
+    .help, .steps {
+        display: inline-block;
+    }
+}
+
 .step {
     text-align: center;
     padding: 2em;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
 
     &:not(.step-assistance) {
         display: none;
@@ -13,15 +20,22 @@
         margin: 0;
         font-family: 'Lora', serif;
         font-weight: 700;
-        font-size: 1.6666666em;
+        font-size: 2.15em;
         color: $off-black;
+    }
+
+    h3 {
+        color: $blue-dark;
+        font-size: 1.25em;
+        letter-spacing: 1px;
     }
 
     .body-text, label {
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 400;
-        font-size: 1.2em;
+        font-size: 1.25em;
         color: $off-black;
+        line-height: 1.55em;
     }
 
     .form-nav {
@@ -68,7 +82,7 @@
 @media (min-width: $screen-md-min) {
     .step {
         width: 50%;
-        float: left;
+        max-width: 800px;
     }
 
 }

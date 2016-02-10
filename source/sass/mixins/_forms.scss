@@ -2,6 +2,7 @@ input.form-control[type=text] {
     color: $gray;
     padding: 0.5em;
     font-family: 'Source Sans Pro', sans-serif;
+    height: 2.85em;
 
     &:focus {
         box-shadow: none;

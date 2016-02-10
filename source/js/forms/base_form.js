@@ -9,8 +9,11 @@ module.exports = class BaseForm {
         this.elem = (cfg.elem === undefined) ? console.error('Elem is required') : $(cfg.elem);
         this.errors = [];
         this.isValid = false;
+        this.totalSteps = cfg.totalSteps || false;
+        this.stepNumber = cfg.stepNumber || 1;
 
         this._addEventHandlers();
+        this.updateStep();
     }
 
     _addEventHandlers() {
@@ -23,6 +26,19 @@ module.exports = class BaseForm {
                 _this.submitHandler();
             }
         });
+    }
+
+    updateStep() {
+        let steps = $('.steps');
+
+        steps.find('.current-step').text(this.stepNumber);
+        if (this.totalSteps) {
+            steps.find('.step-of').show();
+            steps.find('.total-steps').text(this.totalSteps).show();
+        } else {
+            steps.find('.step-of').hide();
+            steps.find('.total-steps').hide();
+        }
     }
 
     enableNext() {
@@ -64,6 +80,7 @@ module.exports = class BaseForm {
     }
 
     show() {
+        this.updateStep();
         this.elem.fadeIn();
     }
 

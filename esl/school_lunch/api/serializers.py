@@ -5,14 +5,12 @@ from school_lunch.models import CoreApplication, Child, Adult
 class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
-        # fields = ('__all__')
         exclude = ('application',)
 
 
 class AdultSerializer(serializers.ModelSerializer):
     class Meta:
         model = Adult
-        # fields = ('__all__')
         exclude = ('application',)
 
 class CoreApplicationSerializer(serializers.ModelSerializer):

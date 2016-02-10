@@ -58,55 +58,82 @@ global.ESL.Apply = function() {
         },
         setupForms: function setupForms() {
             _assistanceForm = new AssistanceForm({
-                elem: '.step-assistance'
+                elem: '.step-assistance',
+                stepNumber: 1,
+                totalSteps: false
             });
 
             _caseNumberForm = new CaseNumberForm({
-                elem: '.step-case-number'
+                elem: '.step-case-number',
+                stepNumber: 2,
+                totalSteps: 6
             });
 
             _householdAdultsForm = new HouseholdAdultsForm({
-                elem: '.step-household-adults'
+                elem: '.step-household-adults',
+                stepNumber: 2,
+                totalSteps: 12
             });
 
             _adultSignerForm = new AdultSignerForm({
-                elem: '.step-adult-signer'
+                elem: '.step-adult-signer',
+                stepNumber: 3,
+                totalSteps: 12
             });
 
             _adultSignerSSNForm = new AdultSignerSSNForm({
-                elem: '.step-adult-signer-ssn'
+                elem: '.step-adult-signer-ssn',
+                stepNumber: 4,
+                totalSteps: 12
             });
 
             _adultIncomeForm = new AdultIncomeForm({
-                elem: '.step-adult-income'
+                elem: '.step-adult-income',
+                stepNumber: 5,
+                totalSteps: 12
             });
 
             _householdChildrenForm = new HouseholdChildrenForm({
-                elem: '.step-household-children'
+                elem: '.step-household-children',
+                stepNumber: 6,
+                totalSteps: 12
             });
 
             _childrenCircumstancesForm = new ChildrenCircumstancesForm({
-                elem: '.step-children-circumstances'
+                elem: '.step-children-circumstances',
+                stepNumber: 7,
+                totalSteps: 12
             });
 
             _childrenIncomeForm = new ChildrenIncomeForm({
-                elem: '.step-children-income'
+                elem: '.step-children-income',
+                stepNumber: 8,
+                totalSteps: 12
             });
 
             _raceForm = new RaceForm({
-                elem: '.step-race'
+                elem: '.step-race',
+                stepNumber: 9,
+                totalSteps: 12
             });
 
             _contactForm = new ContactForm({
-                elem: '.step-contact'
+                elem: '.step-contact',
+                stepNumber: 10,
+                totalSteps: 12
+
             });
 
             _agreementsForm = new AgreementsForm({
-                elem: '.step-agreements'
+                elem: '.step-agreements',
+                stepNumber: 11,
+                totalSteps: 12
             });
 
             _signForm = new SignForm({
-                elem: '.step-sign'
+                elem: '.step-sign',
+                stepNumber: 12,
+                totalSteps: 12
             });
 
             _successForm = new SuccessForm({
