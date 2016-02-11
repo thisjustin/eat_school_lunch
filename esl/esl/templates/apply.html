@@ -21,13 +21,13 @@
                     Does any member of you household participate in one of the following programs? Please select one.
                 {% endblocktrans %}
             </p>
-            <p class="body-text">
+            <p class="body-text italic">
                 {% blocktrans %}
                     If so, all members of your household will automatically qualify for free or reduced priced lunches.
                     You will need your case number.
                 {% endblocktrans %}
             </p>
-            <p class="body-text">
+            <p class="body-text italic">
                 {% blocktrans %}
                     If not, it is OK.
                     You do not have to be part of one of these programs to qualify for free or reduced priced lunches.
@@ -84,17 +84,17 @@
             <div class="form-group snap">
                 <h2>SNAP</h2>
                 <label for="snap-number">{% trans 'Supplemental Nutrition Assistance Program' %}</label>
-                <input class="form-control" type="text" name="snap-number"/>
+                <input class="form-control" type="text" name="snap-number" placeholder="Case Number"/>
             </div>
             <div class="form-group fdpir">
                 <h2>FDPIR</h2>
                 <label for="fdpir-number">{% trans 'Food Distribution Program on Indian Reservations' %}</label>
-                <input class="form-control"  type="text" name="fdpir-number"/>
+                <input class="form-control"  type="text" name="fdpir-number" placeholder="Case Number"/>
             </div>
             <div class="form-group tanf">
                 <h2>TANF</h2>
                 <label for="tanf-number">{% trans 'Temporary Assistance for Needy Families' %}</label>
-                <input class="form-control"  type="text" name="tanf-number"/>
+                <input class="form-control"  type="text" name="tanf-number" placeholder="Case Number"/>
             </div>
         </form>
 
@@ -120,11 +120,15 @@
             </p>
         </section>
         <form>
-            <div class="form-group adults">
-                <label for="adult-first-name">{% trans 'Adult First Name' %}</label>
-                <input class="form-control"  type="text" name="adult-first-name"/>
-                <label for="adult-last-name">{% trans 'Adult Last Name' %}</label>
-                <input class="form-control"  type="text" name="adult-last-name"/>
+            <div class="form-set">
+                <div class="form-group-text adults-first-name">
+                    <label>{% trans 'Adult First Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-first-name" placeholder="Jane"/>
+                </div>
+                <div class="form-group-text adults-last-name">
+                    <label>{% trans 'Adult Last Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-last-name" placeholder="Doe"/>
+                </div>
             </div>
 
             <div class="btn btn-success add-adult">
@@ -142,11 +146,15 @@
         </section>
 
         <script type="x/esl-template" id="adult-full-name-template">
-            <div class="form-group adults">
-                <label for="adult-first-name">{% trans 'Adult First Name' %}</label>
-                <input class="form-control"  type="text" name="adult-first-name"/>
-                <label for="adult-last-name">{% trans 'Adult Last Name' %}</label>
-                <input class="form-control"  type="text" name="adult-last-name"/>
+            <div class="form-set">
+                <div class="form-group-text adults-first-name">
+                    <label>{% trans 'Adult First Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-first-name" placeholder="Jane"/>
+                </div>
+                <div class="form-group-text adults-last-name">
+                    <label>{% trans 'Adult Last Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-last-name" placeholder="Doe"/>
+                </div>
             </div>
         </script>
     </section>
@@ -194,10 +202,17 @@
             </p>
         </section>
         <form>
-            <div class="form-group signing-adult-ssn">
+
+            <div class="form-group-text signing-adult-ssn">
                 <h3 class="adult-name"></h3>
                 <label for="signing-adult-ssn">Social Security Number - Last Four Digits</label>
-                <input class="form-control"  type="text" name="signing-adult-ssn"/>
+                <input class="form-control"  type="text" name="signing-adult-ssn" placeholder="1234" maxlength="4"/>
+            </div>
+            <div class="form-group no-ssn">
+                <label>
+                    <input class="form-control" type="checkbox" name="no-ssn"/>
+                    {% trans 'No Social Security Number' %}
+                </label>
             </div>
         </form>
 
@@ -219,71 +234,81 @@
             <p class="body-text">
                 {% blocktrans %}
                     Please estimate the income for each adult in your household, one at a time.
-                    How much money does <span class="adult-name"></span> make?
+                    How much money does <span class="adult-name"></span> make? Enter 0 if nothing
+                    to report.
                 {% endblocktrans %}
             </p>
         </section>
         <form data-adult-uid="">
             <h3 class="adult-name"></h3>
             <div class="form-group adult-work-income">
-                <h3>Work Income</h3>
-                <label>
-                    <input type="radio" name="work-income-freq" value="monthly" checked="true"/>
+                <h3>EARNINGS FROM WORK</h3>
+                <label class="form-group-radio">
                     {% trans 'Monthly' %}
+                    <input type="radio" name="work-income-freq" value="monthly" checked="true"/>
                 </label>
-                <label>
-                    <input type="radio" name="work-income-freq" value="twice-monthly"/>
+                <label class="form-group-radio">
                     {% trans '2x Monthly' %}
+                    <input type="radio" name="work-income-freq" value="twice-monthly"/>
                 </label>
-                <label>
-                    <input type="radio" name="work-income-freq" value="biweekly"/>
+                <label class="form-group-radio">
                     {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="work-income-freq" value="biweekly"/>
                 </label>
-                <label>
-                    <input type="radio" name="work-income-freq" value="weekly"/>
+                <label class="form-group-radio">
                     {% trans 'Weekly' %}
+                    <input type="radio" name="work-income-freq" value="weekly"/>
                 </label>
-                <input class="form-control" type="text" name="work-income"/>
+                <div class="form-group-text income">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="work-income" placeholder="0"/>
+                </div>
             </div>
             <div class="form-group adult-public-income">
-                <h3>Public Income</h3>
-                <label>
-                    <input type="radio" name="public-income-freq" value="monthly" checked="true"/>
+                <h3>PUBLIC ASSISTANCE / CHILD SUPPORT / ALIMONY</h3>
+                <label class="form-group-radio">
                     {% trans 'Monthly' %}
+                    <input type="radio" name="public-income-freq" value="monthly" checked="true"/>
                 </label>
-                <label>
-                    <input type="radio" name="public-income-freq" value="twice-monthly"/>
+                <label class="form-group-radio">
                     {% trans '2x Monthly' %}
+                    <input type="radio" name="public-income-freq" value="twice-monthly"/>
                 </label>
-                <label>
-                    <input type="radio" name="public-income-freq" value="biweekly"/>
+                <label class="form-group-radio">
                     {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="public-income-freq" value="biweekly"/>
                 </label>
-                <label>
-                    <input type="radio" name="public-income-freq" value="weekly"/>
+                <label class="form-group-radio">
                     {% trans 'Weekly' %}
+                    <input type="radio" name="public-income-freq" value="weekly"/>
                 </label>
-                <input class="form-control" type="text" name="public-income"/>
+                <div class="form-group-text income">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="work-income" placeholder="0"/>
+                </div>
             </div>
             <div class="form-group adult-other-income">
-                <h3>Other Income</h3>
-                <label>
-                    <input type="radio" name="other-income-freq" value="monthly" checked="true"/>
+                <h3>PENSIONS / RETIREMENT / ALL OTHER INCOME</h3>
+                <label class="form-group-radio">
                     {% trans 'Monthly' %}
+                    <input type="radio" name="other-income-freq" value="monthly" checked="true"/>
                 </label>
-                <label>
-                    <input type="radio" name="other-income-freq" value="twice-monthly"/>
+                <label class="form-group-radio">
                     {% trans '2x Monthly' %}
+                    <input type="radio" name="other-income-freq" value="twice-monthly"/>
                 </label>
-                <label>
-                    <input type="radio" name="other-income-freq" value="biweekly"/>
+                <label class="form-group-radio">
                     {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="other-income-freq" value="biweekly"/>
                 </label>
-                <label>
-                    <input type="radio" name="other-income-freq" value="weekly"/>
+                <label class="form-group-radio">
                     {% trans 'Weekly' %}
+                    <input type="radio" name="other-income-freq" value="weekly"/>
                 </label>
-                <input class="form-control" type="text" name="other-income"/>
+                <div class="form-group-text income">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="work-income" placeholder="0"/>
+                </div>
             </div>
         </form>
 
@@ -311,11 +336,11 @@
         <form>
             <div class="form-group children">
                 <label for="child-first-name">{% trans 'Child First Name' %}</label>
-                <input class="form-control"  type="text" name="child-first-name"/>
+                <input class="form-control"  type="text" name="child-first-name" placeholder="John"/>
                 <label for="child-middle-initial">{% trans 'Child Middle Initial' %}</label>
-                <input class="form-control"  type="text" name="child-middle-initial"/>
+                <input class="form-control"  type="text" name="child-middle-initial" placeholder="Q"/>
                 <label for="child-last-name">{% trans 'Child Last Name' %}</label>
-                <input class="form-control"  type="text" name="child-last-name"/>
+                <input class="form-control"  type="text" name="child-last-name" placeholder="Doe"/>
             </div>
 
             <div class="btn btn-success add-child">
@@ -335,11 +360,11 @@
         <script type="x/esl-template" id="child-name-template">
             <div class="form-group children">
                 <label for="child-first-name">{% trans 'Child First Name' %}</label>
-                <input class="form-control"  type="text" name="child-first-name"/>
+                <input class="form-control"  type="text" name="child-first-name" placeholder="John"/>
                 <label for="child-middle-initial">{% trans 'Child Middle Initial' %}</label>
-                <input class="form-control"  type="text" name="child-middle-initial"/>
+                <input class="form-control"  type="text" name="child-middle-initial" placeholder="Q"/>
                 <label for="child-last-name">{% trans 'Child Last Name' %}</label>
-                <input class="form-control"  type="text" name="child-last-name"/>
+                <input class="form-control"  type="text" name="child-last-name" placeholder="Doe"/>
             </div>
         </script>
     </section>
@@ -397,23 +422,26 @@
         <form>
             <h3 class="child-name"></h3>
             <div class="form-group child-income">
-                <label>
-                    <input type="radio" name="income-freq" value="monthly" checked="true"/>
+                <label class="form-group-radio">
                     {% trans 'Monthly' %}
+                    <input type="radio" name="income-freq" value="monthly" checked="true"/>
                 </label>
-                <label>
-                    <input type="radio" name="income-freq" value="twice-monthly"/>
+                <label class="form-group-radio">
                     {% trans '2x Monthly' %}
+                    <input type="radio" name="income-freq" value="twice-monthly"/>
                 </label>
-                <label>
-                    <input type="radio" name="income-freq" value="biweekly"/>
+                <label class="form-group-radio">
                     {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="income-freq" value="biweekly"/>
                 </label>
-                <label>
-                    <input type="radio" name="income-freq" value="weekly"/>
+                <label class="form-group-radio">
                     {% trans 'Weekly' %}
+                    <input type="radio" name="income-freq" value="weekly"/>
                 </label>
-                <input class="form-control" type="text" name="income"/>
+               <div class="form-group-text income">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="income" placeholder="0"/>
+                </div>
             </div>
         </form>
 
@@ -499,27 +527,27 @@
         <form>
             <div class="form-group">
                 <label for="street-address">{% trans 'Street Address' %}</label>
-                <input class="form-control"  type="text" name="street-address"/>
+                <input class="form-control"  type="text" name="street-address" placeholder="1234 Sesame Street"/>
             </div>
             <div class="form-group">
                 <label for="city">{% trans 'City' %}</label>
-                <input class="form-control"  type="text" name="city"/>
+                <input class="form-control"  type="text" name="city" placeholder="Fairview"/>
             </div>
             <div class="form-group">
                 <label for="state">{% trans 'State' %}</label>
-                <input class="form-control"  type="text" name="state"/>
+                <input class="form-control"  type="text" name="state" placeholder="PA"/>
             </div>
             <div class="form-group">
                 <label for="zip-code">{% trans 'Zip Code' %}</label>
-                <input class="form-control"  type="text" name="zip-code"/>
+                <input class="form-control"  type="text" name="zip-code" placeholder="12345"/>
             </div>
             <div class="form-group">
                 <label for="phone-number">{% trans 'Phone Number' %}</label>
-                <input class="form-control"  type="text" name="phone-number"/>
+                <input class="form-control"  type="text" name="phone-number" placeholder="555-555-5555"/>
             </div>
             <div class="form-group">
                 <label for="email">{% trans 'Email' %}</label>
-                <input class="form-control"  type="email" name="email"/>
+                <input class="form-control"  type="email" name="email" placeholder="you@domain.com"/>
             </div>
 
 
@@ -575,7 +603,7 @@
         <form>
             <div class="form-group">
                 <label for="full-name">{% trans 'Full Name' %}</label>
-                <input class="form-control"  type="text" name="full-name"/>
+                <input class="form-control"  type="text" name="full-name" placeholder="John Doe"/>
             </div>
             <div class="form-group">
                 <label for="date">{% trans "Today's Date" %}</label>

@@ -27,7 +27,7 @@ module.exports = class HouseholdAdultsForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CASE_NUMBER);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().ASSISTANCE);
     }
 
     submit() {
@@ -41,7 +41,7 @@ module.exports = class HouseholdAdultsForm extends BaseForm {
     }
 
     getValidData() {
-        let adultNames = this.elem.find('.form-group.adults');
+        let adultNames = this.elem.find('.form-set');
         let adults = [];
 
         $.each(adultNames, function(idx, adult) {

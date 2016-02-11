@@ -15,6 +15,10 @@ module.exports = class AdultSignerSSNForm extends BaseForm {
         this.elem.find('input[type=text]').on('keyup', function() {
             _this.validate();
         });
+
+        this.elem.find('input[type=checkbox]').on('change', function() {
+            _this.validate();
+        });
     }
 
     updateForm() {
@@ -45,21 +49,29 @@ module.exports = class AdultSignerSSNForm extends BaseForm {
         let adultIndex = _.findIndex(adults, function(item) {
             return item.uid === _this.signingAdult.uid;
         });
+        let noSSN = false;
 
-        // ensure ssn is exactly 4 digits
-        if (ssn.length !== 4 || ssn.match(/[^\d]+/)) {
-            this.isValid = false;
-            return;
-        } else {
+        if (this.elem.find('input[name=no-ssn]').is(':checked')) {
+            // signer has no SSN, allow them to continue
+            noSSN = true;
             this.isValid = true;
+        } else {
+            // ensure ssn is exactly 4 digits
+            if (ssn.length !== 4 || ssn.match(/[^\d]+/)) {
+                this.isValid = false;
+                return;
+            } else {
+                this.isValid = true;
+            }
+
+            this.signingAdult.ssn = ssn;
+
+            adults[adultIndex] = this.signingAdult;
         }
 
-        this.signingAdult.ssn = ssn;
-
-        adults[adultIndex] = this.signingAdult;
-
         return {
-            adults: adults
+            adults: adults,
+            no_ssn: noSSN
         }
     }
 };

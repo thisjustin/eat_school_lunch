@@ -20,6 +20,10 @@ body {
     @include clearfix();
 }
 
+.italic {
+    font-style: italic;
+}
+
 .global-header {
     background-color: $blue-light;
     border: 1px solid $blue-gray;
@@ -47,12 +51,12 @@ body {
         display: none;
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 400;
-        font-size: 1em;
-        color: $gray-dark;
-        margin: 1.5em 0;
+        font-size: 1.5em;
+        color: $off-black;
+        margin: 0.9em 0;
 
         .current-step {
-            margin: 0 0.1em;
+            margin: 0 0.1em 0 0.2em;
             display: inline-block;
         }
 

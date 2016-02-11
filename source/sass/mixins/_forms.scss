@@ -1,12 +1,71 @@
+@mixin center-placeholder {
+    &::-webkit-input-placeholder {
+            text-align: center;
+    }
+
+    &:-moz-placeholder {
+        text-align: center;
+    }
+
+    &::-moz-placeholder {
+        text-align: center;
+    }
+
+    &:-ms-input-placeholder {
+        text-align: center;
+    }
+}
+
 input.form-control[type=text] {
-    color: $gray;
+    color: $off-black;
     padding: 0.5em;
     font-family: 'Source Sans Pro', sans-serif;
     height: 2.85em;
+    width: 15em;
 
     &:focus {
         box-shadow: none;
         outline: none;
         border: $blue 2px solid;
+    }
+}
+
+label {
+    font-size: 1.1em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    color: $off-black;
+    line-height: 1.55em;
+}
+
+.form-group {
+    margin: 1em 0;
+}
+
+.form-group-text {
+    display: inline-block;
+    padding: 0 1em;
+    margin: 1em 0;
+
+    label {
+        display: block;
+        text-align: center;
+    }
+}
+
+.form-set {
+    label {
+        text-align: left;
+    }
+}
+
+.form-group-radio {
+    display: inline-block;
+    margin: 0 1em;
+
+    input {
+        width: 1em;
+        display: block;
+        margin: 0 auto;
     }
 }
