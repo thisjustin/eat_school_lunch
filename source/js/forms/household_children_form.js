@@ -41,7 +41,7 @@ module.exports = class HouseholdChildrenForm extends BaseForm {
     }
 
     getValidData() {
-        let childNames = this.elem.find('.form-group.children');
+        let childNames = this.elem.find('.form-set');
         let children = [];
 
         $.each(childNames, function(idx, child) {

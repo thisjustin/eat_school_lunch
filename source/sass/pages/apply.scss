@@ -55,7 +55,7 @@
 }
 
 .step-assistance {
-    label:not(.sr-only) {
+    label {
         display: block;
     }
 
@@ -82,11 +82,109 @@
     }
 }
 
+.step-adult-income {
+    .form-group-text.income {
+        display: block;
+    }
+}
+
 .step-adult-signer-ssn {
     input[type=text] {
         width: 5em;
         @include center-placeholder();
         text-align: center;
+    }
+}
+
+.step-household-children {
+    .form-group {
+        margin: 0.5em 0;
+    }
+
+    .add-child {
+        margin-top: 2em;
+    }
+
+    input[type=text] {
+        width: 13em;
+    }
+
+    input[name=child-middle-initial] {
+        width: 2em;
+    }
+}
+
+.step-children-circumstances {
+    label {
+        display: block;
+    }
+
+    .form-group {
+        text-align: left;
+        width: 92%;
+        margin: 0 auto;
+    }
+}
+
+.step-race {
+    label {
+        display: block;
+    }
+
+    .form-group {
+        text-align: left;
+        width: 92%;
+        margin: 0 auto;
+    }
+
+    .aside {
+        font-weight: 400;
+    }
+}
+
+.step-contact {
+    input[name=street-address] {
+        width: 100%;
+    }
+
+    input[name=zip-code] {
+        width: 5em;
+    }
+
+    input[name=state] {
+        width: 3em;
+    }
+}
+
+.step-agreements {
+    position: relative;
+
+    .helper-text {
+        opacity: 0;
+        transform: translate(0, -100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: $white;
+
+        transition: all 600ms ease-out;
+
+        .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &:hover {
+                color: $blue-gray;
+                cursor: pointer;
+            }
+        }
+
+        &.show {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
     }
 }
 

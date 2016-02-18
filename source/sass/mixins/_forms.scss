@@ -16,7 +16,7 @@
     }
 }
 
-input.form-control[type=text] {
+.form-control[type=text], .form-control[type=email] {
     color: $off-black;
     padding: 0.5em;
     font-family: 'Source Sans Pro', sans-serif;
@@ -50,6 +50,10 @@ label {
     label {
         display: block;
         text-align: center;
+    }
+
+    &.block {
+        display: block;
     }
 }
 

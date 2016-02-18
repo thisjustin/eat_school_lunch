@@ -12,6 +12,21 @@ module.exports = class AgreementsForm extends BaseForm {
     configureEventHandlers() {
         let _this = this;
 
+        this.elem.find('.usda').on('tap', function() {
+            _this.elem.find('.usda-statement').toggleClass('show');
+        });
+
+        this.elem.find('.use-info').on('tap', function() {
+            _this.elem.find('.use-info-statement').toggleClass('show');
+        });
+
+        this.elem.find('.usda-statement .close').on('tap', function() {
+            _this.elem.find('.usda-statement').toggleClass('show');
+        });
+
+        this.elem.find('.use-info-statement .close').on('tap', function() {
+            _this.elem.find('.use-info-statement').toggleClass('show');
+        });
     }
 
     show() {
@@ -19,7 +34,7 @@ module.exports = class AgreementsForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().AGREEMENTS);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().CONTACT);
     }
 
     submit() {

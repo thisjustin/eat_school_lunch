@@ -80,6 +80,7 @@ module.exports = class BaseForm {
     }
 
     show() {
+        $('.step').hide();
         this.updateStep();
         this.elem.fadeIn();
     }
