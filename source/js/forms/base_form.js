@@ -56,6 +56,14 @@ module.exports = class BaseForm {
         this.setFormError(this.errors.join(' <br/> '));
     }
 
+    showHelpIcon() {
+        $('.global-header .help').fadeIn();
+    }
+
+    hideHelpIcon() {
+        $('.global-header .help').hide();
+    }
+
     submit() {
         /*
          How to handle processing this step
@@ -77,6 +85,14 @@ module.exports = class BaseForm {
         // send new data to update core app
         global.ESL.Apply.updateApp(data);
 
+    }
+
+    showHelperText() {
+        this.elem.find('.helper-text').addClass('show');
+    }
+
+    hideHelperText() {
+        this.elem.find('.helper-text').removeClass('show');
     }
 
     show() {

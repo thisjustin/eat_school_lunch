@@ -9,11 +9,12 @@ module.exports = class RaceForm extends BaseForm {
     }
 
     show() {
+        this.hideHelpIcon();
         super.show();
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_INCOME);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_INCOME);
     }
 
     submit() {

@@ -30,7 +30,7 @@ module.exports = class AdultIncomeForm extends BaseForm {
             this.elem.find('input[type=radio][value=monthly]').prop('checked', true);
         } else {
             // no more adults to update, go to next step
-            global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
         }
     }
 
@@ -48,6 +48,7 @@ module.exports = class AdultIncomeForm extends BaseForm {
 
     show() {
         this.updateForm();
+        this.showHelpIcon();
         super.show();
     }
 

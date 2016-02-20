@@ -18,6 +18,7 @@ module.exports = class ContactForm extends BaseForm {
     }
 
     show() {
+        this.hideHelpIcon();
         super.show();
     }
 

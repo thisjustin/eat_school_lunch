@@ -27,6 +27,7 @@ module.exports = class AdultSignerForm extends BaseForm {
 
     show() {
         this.outputOptions();
+        this.hideHelpIcon();
         super.show();
     }
 

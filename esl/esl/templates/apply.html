@@ -63,6 +63,35 @@
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Assistance Programs' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Receipt of benefits by or participation of any household member from certain Assistance Programs
+                    conveys eligibility for free school meals to all children in the household. When certifying
+                    eligibility based on participation in these programs, determinations must be made with
+                    appropriate case numbers submitted on the application. The Assistance Programs are:
+                {% endblocktrans %}
+            </p>
+            <ul>
+                <li>
+                    {% blocktrans %}
+                        Supplemental Nutrition Assistance Program (SNAP) (formerly known as food stamps)
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        Food Distribution Program on Indian Reservations (FDPIR)
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        Temporary Assistance for Needy Families (TANF)
+                    {% endblocktrans %}
+                </li>
+            </ul>
+        </div>
     </section>
 
     <section class="step step-case-number" data-step="CASE_NUMBER">
@@ -153,6 +182,19 @@
                 </div>
             </div>
         </script>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Household Members (adults)' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Include anyone who is living with you and shares income and expenses.
+                    Household members do not have to be related and do not have to have income of their own.
+                    Do not include people who are living with you but aren't supported by your household's income
+                    and do not contribute to your household's income.
+                {% endblocktrans %}
+            </p>
+        </div>
     </section>
 
     <section class="step step-adult-signer" data-step="ADULT_SIGNER">
@@ -220,6 +262,18 @@
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'No Social Security Number' %}</h3>
+            <p>
+                {% blocktrans %}
+                    United States Citizenship is not required.
+                    Your household may still be eligible for free or
+                    reduced price school lunches.
+                {% endblocktrans %}
+            </p>
+        </div>
     </section>
 
     <section class="step step-adult-income" data-step="ADULT_INCOME">
@@ -316,6 +370,60 @@
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Adult Income' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Typically this should be income received during the month or year prior to the date that
+                    the application is submitted - whichever is a better reflection of the household's
+                    current annual income. If past income does not accurately reflect the household's current
+                    annual rate of income, income shall be based on the projected annual household income.
+                {% endblocktrans %}
+            </p>
+            <h3>Potential sources of income include</h3>
+            <ul>
+                <li>Earnings from Work
+            <ul>
+                <li>Salary, wages, cash bonuses</li>
+                <li><em>Net</em> income from self-employment (farm or business)</li>
+                <li>Strike benefits</li>
+                </ul>
+                </li>
+                <li>If household members are in the U.S. Military:
+                <ul>
+                <li>Basic pay and cash bonuses (do NOT include combat pay, FSSA or privatized housing allowances)</li>
+                <li>Allowances for off-base housing, food, and clothing</li>
+                </ul>
+                </li>
+                <li>Public Assistance/Alimony/Child Support (<em>Should not report the value of any cash value public assistance benefits NOT listed here</em>.)
+                <ul>
+                <li>Unemployment benefits</li>
+                <li>Worker’s compensation</li>
+                <li>Supplemental Security Income (SSI)</li>
+                <li>Cash assistance from State or local government</li>
+                <li>Alimony payments (<em>only if court-ordered</em>)</li>
+                <li>Child support payments (<em>only if court-ordered</em>)</li>
+                <li>Veteran’s benefits</li>
+                </ul>
+                </li>
+                <li>Pensions/Retirement/All Other Income
+                <ul>
+                <li>Social Security (including railroad retirement and black lung benefits)</li>
+                <li>Private Pensions or disability</li>
+                <li>Income from trusts or estates</li>
+                <li>Annuities</li>
+                <li>Investment income</li>
+                <li>Earned interest</li>
+                <li>Rental income</li>
+                <li>Regular cash payments from outside household</li>
+                </ul>
+                </li>
+                <li>Income fields with a ‘0’ or that are left blank are assumed to be a certification by the applicant that there is no income to report.</li>
+                <li>Income reported in whole dollars (no cents) and in gross amounts, meaning before taxes or deductions.</li>
+            </ul>
+        </div>
     </section>
 
     <section class="step step-household-children" data-step="HOUSEHOLD_CHILDREN">
@@ -375,6 +483,19 @@
                 </div>
             </div>
         </script>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Child' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Anyone age 18 or under and are supported with the household’s income;
+                    or in your care under a foster arrangement, or qualify as homeless,
+                    migrant, or runaway youth; or students attending high school grade or
+                    under, regardless of age.
+                {% endblocktrans %}
+            </p>
+        </div>
     </section>
 
     <section class="step step-children-circumstances" data-step="CHILDREN_CIRCUMSTANCES">
@@ -404,6 +525,10 @@
                     {% trans 'Foster' %}
                 </label>
                 <label>
+                    <input class="form-control" type="checkbox" name="head-start"/>
+                    {% trans 'Head Start' %}
+                </label>
+                <label>
                     <input class="form-control" type="checkbox" name="homeless"/>
                     {% trans 'Homeless, Migrant or Runaway' %}
                 </label>
@@ -422,6 +547,43 @@
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Foster' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child who is formally placed by a court or a State child welfare agency.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Head Start' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child that is enrolled in a Federal Head Start or State-funded pre-kindergarten program that
+                    uses eligibility criteria that is identical or more stringent than Federal Head Start.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Homeless' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child identified by the Local Education Agency (LEA) homeless liaison or by an official
+                    of a homeless shelter as lacking a fixed, regular, and adequate nighttime residence.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Migrant' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child identified as a migrant by the State or local Migrant Education
+                    Program coordinator or the local educational liaison, or other individual identified by FNS.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Runaway' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child identified as a runaway receiving assistance under a program under the Runaway and
+                    Homeless Youth Act, by the local educational liaison, or other individual in accordance with guidance issued by FNS.
+                {% endblocktrans %}
+            </p>
+        </div>
     </section>
 
     <section class="step step-children-income" data-step="CHILDREN_INCOME">
@@ -469,9 +631,45 @@
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Child Income' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Money received from outside the household that is paid directly to children.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Examples Include' %}</h3>
+            <ul>
+                <li>
+                    {% blocktrans %}
+                        A child has a job where they earn a salary or wages.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A child is blind or disabled and receives Social Security benefits.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A parent is disabled, retired, or deceased, and their child receives Social Security benefits.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A friend or extended family member outside of the household regularly gives a child spending money.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A child receives income from a private pension fund, annuity, or trust.
+                    {% endblocktrans %}
+                </li>
+            </ul>
+        </div>
     </section>
-
-
 
 
     <section class="step step-race" data-step="RACE">

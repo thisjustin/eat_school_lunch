@@ -52,6 +52,46 @@
             float: right;
         }
     }
+
+    .helper-text {
+        opacity: 0;
+        transform: translate(0, -100%);
+        position: absolute;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        background-color: rgba(0,0,0,0.9);
+        color: $white;
+        transition: all 500ms ease-out;
+        padding-bottom: 0.5em;
+
+        p {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        ul {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .close, .close-step-helper {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &:hover {
+                color: $blue-gray;
+                cursor: pointer;
+            }
+        }
+
+        &.show {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+    }
 }
 
 .step-assistance {
@@ -157,35 +197,7 @@
 }
 
 .step-agreements {
-    position: relative;
 
-    .helper-text {
-        opacity: 0;
-        transform: translate(0, -100%);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: $white;
-
-        transition: all 600ms ease-out;
-
-        .close {
-            position: absolute;
-            top: 0;
-            right: 0;
-
-            &:hover {
-                color: $blue-gray;
-                cursor: pointer;
-            }
-        }
-
-        &.show {
-            transform: translate(0, 0);
-            opacity: 1;
-        }
-    }
 }
 
 @media (max-width: $screen-xs-min) {
@@ -200,6 +212,11 @@
     .step {
         width: 50%;
         max-width: 800px;
+
+        .helper-text {
+            left: 25%;
+            width: 50%;
+        }
     }
 
 }

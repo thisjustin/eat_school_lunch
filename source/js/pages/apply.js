@@ -71,43 +71,43 @@ global.ESL.Apply = function() {
 
             _householdAdultsForm = new HouseholdAdultsForm({
                 elem: '.step-household-adults',
-                stepNumber: 2,
+                stepNumber: 5,
                 totalSteps: 12
             });
 
             _adultSignerForm = new AdultSignerForm({
                 elem: '.step-adult-signer',
-                stepNumber: 3,
+                stepNumber: 6,
                 totalSteps: 12
             });
 
             _adultSignerSSNForm = new AdultSignerSSNForm({
                 elem: '.step-adult-signer-ssn',
-                stepNumber: 4,
+                stepNumber: 7,
                 totalSteps: 12
             });
 
             _adultIncomeForm = new AdultIncomeForm({
                 elem: '.step-adult-income',
-                stepNumber: 5,
+                stepNumber: 8,
                 totalSteps: 12
             });
 
             _householdChildrenForm = new HouseholdChildrenForm({
                 elem: '.step-household-children',
-                stepNumber: 6,
+                stepNumber: 2,
                 totalSteps: 12
             });
 
             _childrenCircumstancesForm = new ChildrenCircumstancesForm({
                 elem: '.step-children-circumstances',
-                stepNumber: 7,
+                stepNumber: 3,
                 totalSteps: 12
             });
 
             _childrenIncomeForm = new ChildrenIncomeForm({
                 elem: '.step-children-income',
-                stepNumber: 8,
+                stepNumber: 4,
                 totalSteps: 12
             });
 
@@ -143,8 +143,12 @@ global.ESL.Apply = function() {
         configureEventHandlers: function configureEventHandlers() {
             let _this = this;
 
-            $('.nav-menu').on('tap', function() {
-                $('nav').toggleClass('active');
+            $('.global-header .help').on('tap', function() {
+                _currentStep.showHelperText();
+            });
+
+            $('.close-step-helper').on('tap', function() {
+                _currentStep.hideHelperText();
             });
 
             $('.btn-next').on('tap', function(e) {

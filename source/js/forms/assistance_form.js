@@ -7,6 +7,11 @@ module.exports = class AssistanceForm extends BaseForm {
         super(cfg);
     }
 
+    show() {
+        this.showHelpIcon();
+        super.show();
+    }
+
     submit() {
         super.submit();
 
@@ -15,7 +20,7 @@ module.exports = class AssistanceForm extends BaseForm {
             global.ESL.Apply.showStep(global.ESL.Apply.getC().CASE_NUMBER);
         } else {
             // not a part of any assistance program
-            global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_ADULTS);
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
         }
 
     }

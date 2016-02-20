@@ -29,6 +29,7 @@ module.exports = class AdultSignerSSNForm extends BaseForm {
 
     show() {
         this.updateForm();
+        this.showHelpIcon();
         super.show();
     }
 

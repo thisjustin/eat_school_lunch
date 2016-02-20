@@ -8,6 +8,7 @@ module.exports = class SuccessForm extends BaseForm {
     }
 
     show() {
+        this.hideHelpIcon();
         super.show();
     }
 

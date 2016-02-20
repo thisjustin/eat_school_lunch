@@ -23,11 +23,12 @@ module.exports = class HouseholdChildrenForm extends BaseForm {
     }
 
     show() {
+        this.showHelpIcon();
         super.show();
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_INCOME);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().ASSISTANCE);
     }
 
     submit() {

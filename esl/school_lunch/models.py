@@ -61,6 +61,7 @@ class Child(models.Model):
     last_name = models.CharField(max_length=255)
     is_student = models.BooleanField()
     is_foster = models.BooleanField()
+    is_head_start = models.BooleanField()
     is_homeless_migrant_runaway = models.BooleanField()
 
 

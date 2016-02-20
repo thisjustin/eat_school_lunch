@@ -28,7 +28,19 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
             this.elem.find('input[type=checkbox]').removeProp('checked');
         } else {
             // no more children to update, go to next step
-            global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_INCOME);
+            if (global.ESL.Apply.getApp().children.length > 1) {
+                global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_INCOME);
+            } else {
+                let child = global.ESL.Apply.getApp().children[0];
+
+                if (child && child.is_student && child.is_foster) {
+                    // application is only for a student foster child, skip to end
+                    global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
+                } else {
+                    global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_INCOME);
+                }
+            }
+
         }
     }
 
@@ -46,6 +58,7 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
 
     show() {
         this.updateForm();
+        this.showHelpIcon();
         super.show();
     }
 
@@ -80,6 +93,9 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
             let elem = $(item);
 
             switch(elem.attr('name')) {
+                case 'head-start':
+                    _this.child.is_head_start = true;
+                    break;
                 case 'student':
                     _this.child.is_student = true;
                     break;

@@ -30,6 +30,7 @@ module.exports = class AgreementsForm extends BaseForm {
     }
 
     show() {
+        this.hideHelpIcon();
         super.show();
     }
 

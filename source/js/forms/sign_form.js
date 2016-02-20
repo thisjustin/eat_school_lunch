@@ -17,6 +17,7 @@ module.exports = class SignForm extends BaseForm {
     }
 
     show() {
+        this.hideHelpIcon();
         super.show();
     }
 

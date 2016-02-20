@@ -18,6 +18,7 @@ module.exports = class ChildrenIncomeForm extends BaseForm {
     }
 
     show() {
+        this.showHelpIcon();
         super.show();
     }
 
@@ -27,7 +28,7 @@ module.exports = class ChildrenIncomeForm extends BaseForm {
 
     submit() {
         super.submit();
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_ADULTS);
     }
 
     getValidData() {
