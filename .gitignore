@@ -66,6 +66,7 @@ target/
 *.ini
 node_modules/*
 static/*
-esl/development.py
+esl/esl/development.py
 build/*
 browserify-cache.json
+*.env
