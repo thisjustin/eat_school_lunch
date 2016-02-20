@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+twixsr-#ge-&+*hvhie&972rx=+3^v5&)l3=81$$+gs3$h!n3'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'not_a_secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'esl.wsgi.application'
+WSGI_APPLICATION = os.environ.get('WSGI_APPLICATION', 'esl.wsgi.application')
 
 
 # Database
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'esl.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'esldb',
-        'USER': 'justin',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
+        'NAME': os.environ.get('DB_NAME', ''),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASS', ''),
+        'HOST': os.environ.get('DB_HOST', ''),
         'PORT': '5432',
     }
 }
@@ -145,3 +145,45 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './esl_error.log',
+            'formatter': 'verbose'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s [%(funcName)s:%(process)d] %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'loggers': {
+        'yoda': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'formatter': 'verbose'
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'file'],
+            'level': 'ERROR',
+            'propagate': True
+        },
+        'django.security': {
+            'handlers': ['mail_admins', 'file'],
+            'level': 'ERROR',
+            'propagate': True
+        }
+    }
+}
