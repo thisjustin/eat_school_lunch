@@ -1,0 +1,92 @@
+/*
+*   Global Styles
+*/
+
+body {
+    font-size: 12px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+* {
+    @include box-sizing(border-box);
+}
+
+// hide all screen reader elements
+.sr-only {
+    display: none;
+}
+
+.main-wrapper {
+    @include clearfix();
+}
+
+.italic {
+    font-style: italic;
+}
+
+.global-header {
+    background-color: $blue-light;
+    border: 1px solid $blue-gray;
+    width: 100%;
+    height: 4.5em;
+    position: relative;
+
+    .help {
+        display: none;
+        font-size: 3em;
+        color: $blue-dark;
+        position: absolute;
+        left: 0.5em;
+        top: 0.25em;
+
+        &:hover {
+            cursor: pointer;
+            color: $blue;
+        }
+    }
+
+    .steps {
+        width: 100%;
+        text-align: center;
+        display: none;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        font-size: 1.5em;
+        color: $off-black;
+        margin: 0.9em 0;
+
+        .current-step {
+            margin: 0 0.1em 0 0.2em;
+            display: inline-block;
+        }
+
+        .steps-of {
+            margin: 0 0.1em;
+            display: inline-block;
+        }
+    }
+}
+
+@media (max-width: $screen-xs-min) {
+
+}
+
+@media (min-width: $screen-sm-min) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: $screen-md-min) {
+
+}
+
+@media (min-width: $screen-lg-min) {
+
+}
+
+@media (min-width: $screen-xl-min) {
+    body {
+        font-size: 16px;
+    }
+}

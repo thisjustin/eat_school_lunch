@@ -20,4 +20,6 @@ config.prod = checkProd();
 config.stage = checkStage();
 config.dev = checkDev();
 
+console.log('dev: ', config.dev);
+
 module.exports = config;

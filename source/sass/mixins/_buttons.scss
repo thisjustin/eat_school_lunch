@@ -1,0 +1,64 @@
+.btn {
+    display: inline-block;
+    width: 10em;
+    height: 3.85em;
+    @include border-radius(0.1666666em);
+    background-color: $gray;
+
+    p {
+        color: $white;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 2em;
+        letter-spacing: 0.125em;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0.3em 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+    }
+}
+
+.btn-back {
+    background-color: $gray;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $gray-dark;
+    }
+}
+
+.btn-next {
+    background-color: $blue;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $blue-dark;
+    }
+
+    &.disabled {
+        background-color: $blue;
+        opacity: 0.17;
+    }
+}
+
+.btn-success {
+    background-color: $blue;
+    width: 8em;
+    height: 2.85em;
+
+    p {
+        font-size: 1em;
+        padding: 0.75em 0;
+    }
+
+    &:hover {
+        background-color: $blue-dark;
+    }
+}

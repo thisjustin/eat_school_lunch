@@ -1,0 +1,33 @@
+//
+// Variables
+// --------------------------------------------------
+
+//== Paths
+$static-path: '/static/';
+$image-path: $static-path + '/images/';
+
+//== Colors
+$white: #fff;
+$black: #000;
+$blue-dark: #0197a7;
+$blue: #00bcd4;
+$blue-light: #e4f5f7;
+$blue-gray: #c6dee1;
+$orange: #ff5722;
+$gray-dark: #727272;
+$gray: #a4a4a4;
+$gray-light: #f4f4f4;
+$off-black: #212121;
+
+//== Responsive Breakpoints
+$screen-xs-min: 480px;
+$screen-sm-min: 768px;
+$screen-md-min: 1024px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 1500px;
+
+$screen-xs-max: ($screen-xs-min - 1);
+$screen-sm-max: ($screen-sm-min - 1);
+$screen-md-max: ($screen-md-min -1);
+$screen-lg-max: ($screen-lg-min -1);
+$screen-xl-max: ($screen-xl-min - 1);

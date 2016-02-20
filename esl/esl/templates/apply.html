@@ -1,0 +1,954 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock head %}
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/apply.css" />
+{% endblock css %}
+
+{% block content %}
+    {{ block.super }}
+    <section class="step step-assistance" data-step="ASSISTANCE">
+        <section class="instructions">
+            <h1>
+                {% trans 'Assitance Programs' %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Does any member of you household participate in one of the following programs? Please select one.
+                {% endblocktrans %}
+            </p>
+            <p class="body-text italic">
+                {% blocktrans %}
+                    If so, all members of your household will automatically qualify for free or reduced priced lunches.
+                    You will need your case number.
+                {% endblocktrans %}
+            </p>
+            <p class="body-text italic">
+                {% blocktrans %}
+                    If not, it is OK.
+                    You do not have to be part of one of these programs to qualify for free or reduced priced lunches.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="programs" value="SNAP"/>
+                    {% trans 'SNAP - Supplemental Nutrition Assistance Program' %}
+                </label>
+                <label>
+                    <input type="radio" name="programs" value="FDPIR"/>
+                    {% trans 'FDPIR - Food Distribution Program on Indian Reservations' %}
+                </label>
+                <label>
+                    <input type="radio" name="programs" value="TANF"/>
+                    {% trans 'TANF - Temporary Assistance for Needy Families' %}
+                </label>
+                <label>
+                    <input type="radio" name="programs" value="none" checked="true"/>
+                    {% trans 'None' %}
+                </label>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Assistance Programs' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Receipt of benefits by or participation of any household member from certain Assistance Programs
+                    conveys eligibility for free school meals to all children in the household. When certifying
+                    eligibility based on participation in these programs, determinations must be made with
+                    appropriate case numbers submitted on the application. The Assistance Programs are:
+                {% endblocktrans %}
+            </p>
+            <ul>
+                <li>
+                    {% blocktrans %}
+                        Supplemental Nutrition Assistance Program (SNAP) (formerly known as food stamps)
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        Food Distribution Program on Indian Reservations (FDPIR)
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        Temporary Assistance for Needy Families (TANF)
+                    {% endblocktrans %}
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="step step-case-number" data-step="CASE_NUMBER">
+        <section class="instructions">
+            <h1>
+                {% trans 'Assitance Program Case Number' %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please enter your case number for:
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group snap">
+                <h2>SNAP</h2>
+                <label for="snap-number">{% trans 'Supplemental Nutrition Assistance Program' %}</label>
+                <input class="form-control" type="text" name="snap-number" placeholder="Case Number" maxlength="255"/>
+            </div>
+            <div class="form-group fdpir">
+                <h2>FDPIR</h2>
+                <label for="fdpir-number">{% trans 'Food Distribution Program on Indian Reservations' %}</label>
+                <input class="form-control"  type="text" name="fdpir-number" placeholder="Case Number" maxlength="255"/>
+            </div>
+            <div class="form-group tanf">
+                <h2>TANF</h2>
+                <label for="tanf-number">{% trans 'Temporary Assistance for Needy Families' %}</label>
+                <input class="form-control"  type="text" name="tanf-number" placeholder="Case Number" maxlength="255"/>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-household-adults" data-step="HOUSEHOLD_ADULTS">
+        <section class="instructions">
+            <h1>
+                {% trans "Adults in Your Household" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please list the full names of every adult in your household.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-set">
+                <div class="form-group-text adults-first-name">
+                    <label>{% trans 'Adult First Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-first-name" placeholder="Jane" maxlength="255"/>
+                </div>
+                <div class="form-group-text adults-last-name">
+                    <label>{% trans 'Adult Last Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-last-name" placeholder="Doe" maxlength="255"/>
+                </div>
+            </div>
+
+            <div class="btn btn-success add-adult">
+                <p>{% trans '+ add adult' %}</p>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <script type="x/esl-template" id="adult-full-name-template">
+            <div class="form-set">
+                <div class="form-group-text adults-first-name">
+                    <label>{% trans 'Adult First Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-first-name" placeholder="Jane" maxlength="255"/>
+                </div>
+                <div class="form-group-text adults-last-name">
+                    <label>{% trans 'Adult Last Name' %}</label>
+                    <input class="form-control"  type="text" name="adult-last-name" placeholder="Doe" maxlength="255"/>
+                </div>
+            </div>
+        </script>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Household Members (adults)' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Include anyone who is living with you and shares income and expenses.
+                    Household members do not have to be related and do not have to have income of their own.
+                    Do not include people who are living with you but aren't supported by your household's income
+                    and do not contribute to your household's income.
+                {% endblocktrans %}
+            </p>
+        </div>
+    </section>
+
+    <section class="step step-adult-signer" data-step="ADULT_SIGNER">
+        <section class="instructions">
+            <h1>
+                {% trans "Adult Signer" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    One adult needs to sign this application. Which adult will be sigining? Select one.
+                {% endblocktrans %}
+            </p>
+        </section>
+
+        <form></form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <script type="x/esl-template" id="signing-adult-template">
+            <label>
+                <input type="radio" name="programs" value="<%= uid %>" <% if (selected) { %> checked="true" <% } %>/>
+                <%= adultName %>
+            </label>
+        </script>
+    </section>
+
+    <section class="step step-adult-signer-ssn" data-step="ADULT_SIGNER_SSN">
+        <section class="instructions">
+            <h1>
+                {% trans "Adult Signer Social Security Number" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please enter the last four digits of the signing adult's social security number.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+
+            <div class="form-group-text signing-adult-ssn">
+                <h3 class="adult-name"></h3>
+                <label for="signing-adult-ssn">Social Security Number - Last Four Digits</label>
+                <input class="form-control"  type="text" name="signing-adult-ssn" placeholder="1234" maxlength="4"/>
+            </div>
+            <div class="form-group no-ssn">
+                <label>
+                    <input class="form-control" type="checkbox" name="no-ssn"/>
+                    {% trans 'No Social Security Number' %}
+                </label>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'No Social Security Number' %}</h3>
+            <p>
+                {% blocktrans %}
+                    United States Citizenship is not required.
+                    Your household may still be eligible for free or
+                    reduced price school lunches.
+                {% endblocktrans %}
+            </p>
+        </div>
+    </section>
+
+    <section class="step step-adult-income" data-step="ADULT_INCOME">
+        <section class="instructions">
+            <h1>
+                {% trans "Adult Income" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please estimate the income for each adult in your household, one at a time.
+                    How much money does <span class="adult-name"></span> make? Enter 0 if nothing
+                    to report.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form data-adult-uid="">
+            <h3 class="adult-name"></h3>
+            <div class="form-group adult-work-income">
+                <h3>EARNINGS FROM WORK</h3>
+                <label class="form-group-radio">
+                    {% trans 'Monthly' %}
+                    <input type="radio" name="work-income-freq" value="monthly" checked="true"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans '2x Monthly' %}
+                    <input type="radio" name="work-income-freq" value="twice-monthly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="work-income-freq" value="biweekly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Weekly' %}
+                    <input type="radio" name="work-income-freq" value="weekly"/>
+                </label>
+                <div class="form-group-text income block">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="work-income" placeholder="0"/>
+                </div>
+            </div>
+            <div class="form-group adult-public-income">
+                <h3>PUBLIC ASSISTANCE / CHILD SUPPORT / ALIMONY</h3>
+                <label class="form-group-radio">
+                    {% trans 'Monthly' %}
+                    <input type="radio" name="public-income-freq" value="monthly" checked="true"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans '2x Monthly' %}
+                    <input type="radio" name="public-income-freq" value="twice-monthly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="public-income-freq" value="biweekly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Weekly' %}
+                    <input type="radio" name="public-income-freq" value="weekly"/>
+                </label>
+                <div class="form-group-text income">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="public-income" placeholder="0"/>
+                </div>
+            </div>
+            <div class="form-group adult-other-income block">
+                <h3>PENSIONS / RETIREMENT / ALL OTHER INCOME</h3>
+                <label class="form-group-radio">
+                    {% trans 'Monthly' %}
+                    <input type="radio" name="other-income-freq" value="monthly" checked="true"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans '2x Monthly' %}
+                    <input type="radio" name="other-income-freq" value="twice-monthly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="other-income-freq" value="biweekly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Weekly' %}
+                    <input type="radio" name="other-income-freq" value="weekly"/>
+                </label>
+                <div class="form-group-text income block">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="other-income" placeholder="0"/>
+                </div>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Adult Income' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Typically this should be income received during the month or year prior to the date that
+                    the application is submitted - whichever is a better reflection of the household's
+                    current annual income. If past income does not accurately reflect the household's current
+                    annual rate of income, income shall be based on the projected annual household income.
+                {% endblocktrans %}
+            </p>
+            <h3>Potential sources of income include</h3>
+            <ul>
+                <li>Earnings from Work
+            <ul>
+                <li>Salary, wages, cash bonuses</li>
+                <li><em>Net</em> income from self-employment (farm or business)</li>
+                <li>Strike benefits</li>
+                </ul>
+                </li>
+                <li>If household members are in the U.S. Military:
+                <ul>
+                <li>Basic pay and cash bonuses (do NOT include combat pay, FSSA or privatized housing allowances)</li>
+                <li>Allowances for off-base housing, food, and clothing</li>
+                </ul>
+                </li>
+                <li>Public Assistance/Alimony/Child Support (<em>Should not report the value of any cash value public assistance benefits NOT listed here</em>.)
+                <ul>
+                <li>Unemployment benefits</li>
+                <li>Worker’s compensation</li>
+                <li>Supplemental Security Income (SSI)</li>
+                <li>Cash assistance from State or local government</li>
+                <li>Alimony payments (<em>only if court-ordered</em>)</li>
+                <li>Child support payments (<em>only if court-ordered</em>)</li>
+                <li>Veteran’s benefits</li>
+                </ul>
+                </li>
+                <li>Pensions/Retirement/All Other Income
+                <ul>
+                <li>Social Security (including railroad retirement and black lung benefits)</li>
+                <li>Private Pensions or disability</li>
+                <li>Income from trusts or estates</li>
+                <li>Annuities</li>
+                <li>Investment income</li>
+                <li>Earned interest</li>
+                <li>Rental income</li>
+                <li>Regular cash payments from outside household</li>
+                </ul>
+                </li>
+                <li>Income fields with a ‘0’ or that are left blank are assumed to be a certification by the applicant that there is no income to report.</li>
+                <li>Income reported in whole dollars (no cents) and in gross amounts, meaning before taxes or deductions.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="step step-household-children" data-step="HOUSEHOLD_CHILDREN">
+        <section class="instructions">
+            <h1>
+                {% trans "Children in Your Household" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please list the full names of every child in your household.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-set">
+                <div class="form-group-text child-first-name">
+                    <label for="child-first-name">{% trans 'First Name' %}</label>
+                    <input class="form-control"  type="text" name="child-first-name" placeholder="John" maxlength="255"/>
+                </div>
+                <div class="form-group-text child-middle-initial">
+                    <label for="child-middle-initial">{% trans 'Middle Initial' %}</label>
+                    <input class="form-control"  type="text" name="child-middle-initial" placeholder="Q" maxlength="1"/>
+                </div>
+                <div class="form-group-text child-last-name">
+                    <label for="child-last-name">{% trans 'Last Name' %}</label>
+                    <input class="form-control"  type="text" name="child-last-name" placeholder="Doe" maxlength="255"/>
+                </div>
+            </div>
+
+            <div class="btn btn-success add-child">
+                <p>{% trans '+ add child' %}</p>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <script type="x/esl-template" id="child-name-template">
+            <div class="form-set">
+                <div class="form-group-text child-first-name">
+                    <label for="child-first-name">{% trans 'First Name' %}</label>
+                    <input class="form-control"  type="text" name="child-first-name" placeholder="John" maxlength="255"/>
+                </div>
+                <div class="form-group-text child-middle-initial">
+                    <label for="child-middle-initial">{% trans 'Middle Initial' %}</label>
+                    <input class="form-control"  type="text" name="child-middle-initial" placeholder="Q" maxlength="1"/>
+                </div>
+                <div class="form-group-text child-last-name">
+                    <label for="child-last-name">{% trans 'Last Name' %}</label>
+                    <input class="form-control"  type="text" name="child-last-name" placeholder="Doe" maxlength="255"/>
+                </div>
+            </div>
+        </script>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Child' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Anyone age 18 or under and are supported with the household’s income;
+                    or in your care under a foster arrangement, or qualify as homeless,
+                    migrant, or runaway youth; or students attending high school grade or
+                    under, regardless of age.
+                {% endblocktrans %}
+            </p>
+        </div>
+    </section>
+
+    <section class="step step-children-circumstances" data-step="CHILDREN_CIRCUMSTANCES">
+        <section class="instructions">
+            <h1>
+                {% trans "Child Circumstance" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Do any of the following options describe
+                {% endblocktrans %}
+                <span class="child-name"></span>
+                {% blocktrans %}
+                ? Select one or many.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form data-child-uid="">
+            <h3 class="child-name"></h3>
+            <div class="form-group child-circumstances">
+                <label>
+                    <input class="form-control" type="checkbox" name="student"/>
+                    {% trans 'Student' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="foster"/>
+                    {% trans 'Foster' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="head-start"/>
+                    {% trans 'Head Start' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="homeless"/>
+                    {% trans 'Homeless, Migrant or Runaway' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="none"/>
+                    {% trans 'None' %}
+                </label>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Foster' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child who is formally placed by a court or a State child welfare agency.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Head Start' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child that is enrolled in a Federal Head Start or State-funded pre-kindergarten program that
+                    uses eligibility criteria that is identical or more stringent than Federal Head Start.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Homeless' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child identified by the Local Education Agency (LEA) homeless liaison or by an official
+                    of a homeless shelter as lacking a fixed, regular, and adequate nighttime residence.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Migrant' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child identified as a migrant by the State or local Migrant Education
+                    Program coordinator or the local educational liaison, or other individual identified by FNS.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Runaway' %}</h3>
+            <p>
+                {% blocktrans %}
+                    A child identified as a runaway receiving assistance under a program under the Runaway and
+                    Homeless Youth Act, by the local educational liaison, or other individual in accordance with guidance issued by FNS.
+                {% endblocktrans %}
+            </p>
+        </div>
+    </section>
+
+    <section class="step step-children-income" data-step="CHILDREN_INCOME">
+        <section class="instructions">
+            <h1>
+                {% trans "Children Income" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please estimate the TOTAL income for ALL children in your household.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <h3 class="child-name"></h3>
+            <div class="form-group child-income">
+                <label class="form-group-radio">
+                    {% trans 'Monthly' %}
+                    <input type="radio" name="income-freq" value="monthly" checked="true"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans '2x Monthly' %}
+                    <input type="radio" name="income-freq" value="twice-monthly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Bi-Weekly' %}
+                    <input type="radio" name="income-freq" value="biweekly"/>
+                </label>
+                <label class="form-group-radio">
+                    {% trans 'Weekly' %}
+                    <input type="radio" name="income-freq" value="weekly"/>
+                </label>
+               <div class="form-group-text income block">
+                    <label>{% trans 'Income' %}</label>
+                    <input class="form-control" type="text" name="income" placeholder="0"/>
+                </div>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <div class="helper-text">
+            <i class="material-icons close-step-helper">close</i>
+            <h3>{% trans 'Child Income' %}</h3>
+            <p>
+                {% blocktrans %}
+                    Money received from outside the household that is paid directly to children.
+                {% endblocktrans %}
+            </p>
+            <h3>{% trans 'Examples Include' %}</h3>
+            <ul>
+                <li>
+                    {% blocktrans %}
+                        A child has a job where they earn a salary or wages.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A child is blind or disabled and receives Social Security benefits.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A parent is disabled, retired, or deceased, and their child receives Social Security benefits.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A friend or extended family member outside of the household regularly gives a child spending money.
+                    {% endblocktrans %}
+                </li>
+                <li>
+                    {% blocktrans %}
+                        A child receives income from a private pension fund, annuity, or trust.
+                    {% endblocktrans %}
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section class="step step-race" data-step="RACE">
+        <section class="instructions">
+            <h1>
+                {% trans "Children's Racial & Ethnic Identities" %}
+            </h1>
+            <h2>
+                {% trans 'Optional' %}
+            </h2>
+            <p class="body-text">
+                {% blocktrans %}
+                    This information helps to make sure we are fully serving our community.
+                    Responding to this section is <span class="underline">optional</span> and
+                    does not affect your children's eligibility for free or reduced priced meals.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+            <div class="form-group ethnicity">
+                <h2>
+                    {% trans "Children's Ethnicity" %}
+                    <span class="aside">({% trans 'select one' %})</span>
+                </h2>
+                <label>
+                    <input class="form-control" type="checkbox" name="hispanic"/>
+                    {% trans 'Hispanic or Latino' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="not-hispanic"/>
+                    {% trans 'Not Hispanic or Latino' %}
+                </label>
+            </div>
+            <div class="form-group race">
+                <h2>
+                    {% trans "Children's Race" %}
+                    <span class="aside">({% trans 'select one or more' %})</span>
+                </h2>
+                <label>
+                    <input class="form-control" type="checkbox" name="american-indian"/>
+                    {% trans 'American Indian or Alaskan Native' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="asian"/>
+                    {% trans 'Asian' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="black"/>
+                    {% trans 'Black or African American' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="hawaiian"/>
+                    {% trans 'Native Hawaiian or Other Pacific Islander' %}
+                </label>
+                <label>
+                    <input class="form-control" type="checkbox" name="white"/>
+                    {% trans 'White' %}
+                </label>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-contact" data-step="CONTACT">
+        <section class="instructions">
+            <h1>
+                {% trans "Contact Info" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    Please enter your contact info.
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form class="form-set">
+            <div class="form-group-text block">
+                <label for="street-address">{% trans 'Street Address' %}</label>
+                <input class="form-control"  type="text" name="street-address" placeholder="1234 Sesame Street" maxlength="255"/>
+            </div>
+            <div class="form-group-text">
+                <label for="city">{% trans 'City' %}</label>
+                <input class="form-control"  type="text" name="city" placeholder="Fairview" maxlength="255"/>
+            </div>
+            <div class="form-group-text">
+                <label for="state">{% trans 'State' %}</label>
+                <input class="form-control"  type="text" name="state" placeholder="PA" maxlength="2"/>
+            </div>
+            <div class="form-group-text">
+                <label for="zip-code">{% trans 'Zip Code' %}</label>
+                <input class="form-control"  type="text" name="zip-code" placeholder="12345" maxlength="5"/>
+            </div>
+            <div class="form-group-text">
+                <label for="phone-number">{% trans 'Phone Number' %}</label>
+                <input class="form-control"  type="text" name="phone-number" placeholder="555-555-5555" maxlength="255"/>
+            </div>
+            <div class="form-group-text">
+                <label for="email">{% trans 'Email' %}</label>
+                <input class="form-control"  type="email" name="email" placeholder="you@domain.com" maxlength="255"/>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-agreements" data-step="AGREEMENTS">
+        <section class="instructions">
+            <h1>
+                {% trans "Read Statements" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    You have the opportunity to read the following statements.
+                    Click on the link to read the full text.
+                {% endblocktrans %}
+            </p>
+            <p class="statement usda">USDA Non-Discrimination Statement</p>
+            <p class="statement use-info">Use of Info Statement</p>
+        </section>
+        <form>
+            <label>
+                <input type="checkbox" name="read-statements"/>
+                {% trans 'I have had the opportunity to read these statements.' %}
+            </label>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+
+        <div class="helper-text usda-statement">
+            <i class="material-icons close">close</i>
+            <h3>USDA Non-Discrimination Statement</h3>
+            <p>
+                In accordance with Federal civil rights law and U.S. Department of Agriculture (USDA) civil rights regulations and policies,
+                the USDA, its Agencies, offices, and employees, and institutions participating in or administering USDA programs are
+                prohibited from discriminating based on race, color, national origin, sex, disability, age, or reprisal or retaliation
+                for prior civil rights activity in any program or activity conducted or funded by USDA.
+            </p>
+            <p>
+                Persons with disabilities who require alternative means of communication for program information (e.g.
+                Braille, large print, audiotape, American Sign Language, etc.), should contact the Agency (State or local)
+                where they applied for benefits. Individuals who are deaf, hard of hearing or have speech disabilities may
+                contact USDA through the Federal Relay Service at (800) 877-8339. Additionally, program information may be
+                made available in languages other than English.
+            </p>
+            <p>
+                To file a program complaint of discrimination, complete the USDA Program Discrimination Complaint Form,
+                (AD-3027) found online at: http://www.ascr.usda.gov/complaint_filing_cust.html, and at any USDA office,
+                or write a letter addressed to USDA and provide in the letter all of the information requested in the form.
+                To request a copy of the complaint form, call (866) 632-9992. Submit your completed form or letter to USDA by:
+            </p>
+            <p>
+                (1) Mail: U.S. Department of Agriculture
+                Office of the Assistant Secretary for Civil Rights
+                1400 Independence Avenue, SW
+                Washington, D.C. 20250-9410;
+            </p>
+            <p>
+                (2) Fax: (202) 690-7442; or
+            </p>
+            <p>
+                (3) Email: program.intake@usda.gov.
+            </p>
+            <p>
+                This institution is an equal opportunity provider.
+            </p>
+        </div>
+        <div class="helper-text use-info-statement">
+            <i class="material-icons close">close</i>
+            <h3>Use of Information Statement</h3>
+            <p>
+                The Richard B. Russell National School Lunch Act requires the information on this application.
+                You do not have to give the information, but if you do not submit all needed information, we cannot
+                approve your child for free or reduced price meals. You must include the last four digits of the social
+                security number of the adult household member who signs the application. The social security number is
+                not required when you apply on behalf of a foster child or you list a Supplemental Nutrition Assistance
+                Program (SNAP), Temporary Assistance for Needy Families (TANF) Program or Food Distribution Program on
+                Indian Reservations (FDPIR) case number or other FDPIR identifier for your child or when you indicate
+                that the adult household member signing the application does not have a social security number. We will
+                use your information to determine if your child is eligible for free or reduced price meals, and for
+                administration and enforcement of the lunch and breakfast programs.
+            </p>
+            <p>
+                We may share your eligibility information with education, health, and nutrition programs to help them
+                evaluate, fund, or determine benefits for their programs, auditors for program reviews, and law
+                enforcement officials to help them look into violations of program rules.
+            </p>
+        </div>
+    </section>
+
+    <section class="step step-sign" data-step="SIGN">
+        <section class="instructions">
+            <h1>
+                {% trans "Sign & Date" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    As the signing adult, enter your name and today's date.
+                {% endblocktrans %}
+            </p>
+            <p class="body-text">
+                The person signing is furnishing true information and to advise that person that the application is being made in connection with the receipt of Federal funds;
+                <br/>
+                School officials may verify the information on the application; and
+                <br/>
+                Deliberate misrepresentation of the information may subject the applicant to prosecution under State and Federal statutes.
+            </p>
+        </section>
+        <form>
+            <div class="form-group">
+                <label for="full-name">{% trans 'Full Name' %}</label>
+                <input class="form-control"  type="text" name="full-name" placeholder="John Doe"/>
+            </div>
+            <div class="form-group">
+                <label for="date">{% trans "Today's Date" %}</label>
+                <input class="form-control"  type="text" name="date" value="{% now 'Y-m-d' %}" disabled="disabled"/>
+            </div>
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next disabled">
+                <p>{% trans 'Next' %}</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="step step-success" data-step="SUCCESS">
+        <section class="instructions">
+            <h1>
+                {% trans "Success!" %}
+            </h1>
+            <p class="body-text">
+                {% blocktrans %}
+                    You have successfully filled out the 2016-2017 School Lunch Application
+                {% endblocktrans %}
+            </p>
+        </section>
+        <form>
+
+        </form>
+
+        <section class="form-nav">
+            <div class="btn btn-back">
+                <p>{% trans 'Back' %}</p>
+            </div>
+            <div class="btn btn-next">
+                <p>{% trans 'Finish' %}</p>
+            </div>
+        </section>
+    </section>
+{% endblock content %}
+
+{% block js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pages/apply.js"></script>
+    <script type="text/javascript">
+        ESL.Apply.init();
+    </script>
+{% endblock js %}

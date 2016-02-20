@@ -1,0 +1,47 @@
+{% load i18n %}
+
+<!doctype html>
+<html>
+    <head>
+        {% block head %}
+            <meta charset="utf-8">
+            <meta http-equiv="x-ua-compatible" content="ie=edge">
+            <title>{% block title %}Eat School Lunch Challenge{% endblock title %}</title>
+            <meta name="description" content="Eat School Lunch Challenge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+            {% block css %}
+                <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Lora:400,700,700italic' rel='stylesheet' type='text/css'>
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            {% endblock css %}
+        {% endblock head %}
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browserupgrade">{% trans 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.' %}</p>
+        <![endif]-->
+        <section class="main-wrapper">
+            <header class="global-header">
+                <i class="material-icons help">help_outline</i>
+                <p class="steps">
+                    {% trans 'Step' %}<span class="current-step"></span>
+                    <span class="step-of">{% trans 'of' %}</span>
+                    <span class="total-steps"></span>
+                </p>
+            </header>
+            {% block content %}{% endblock content %}
+        </section>
+    </body>
+    {% block js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/vendor/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/vendor/jquery_finger-0.1.4.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/util/common.js"></script>
+        <!--<script type="text/javascript" src="{{ STATIC_URL }}js/pages/base.js"></script>-->
+        <script type="text/javascript">
+            //ESL.Base.init();
+        </script>
+    {% endblock js %}
+
+    {% block analytics %}
+
+    {% endblock analytics %}
+</html>
