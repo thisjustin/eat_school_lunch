@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # go to project directory
-cd /home/ubuntu/www/eat/eat_school_lunch
+cd /home/ubuntu/www/eat/eat_school_lunch/esl
 
 # activate python environment
 source /home/ubuntu/.virtualenvs/esl/bin/activate
@@ -19,13 +19,13 @@ echo "deploying ${DEPLOY_ENV}\n"
 
 # pull changes, install dependencies, and build assets
 git fetch origin && git reset --hard origin/master
-pip install -r requirements.txt
-
-# copy config files
-cp -r etc/init/ /etc/init/
+pip install -r ../requirements.txt
+npm install
+honcho run ESL_ENV=prod && gulp prod
 
 # migrate pending database migrations and collect all static files
-honcho run ./esl/school_lunch/manage.py migrate
+honcho run ./manage.py migrate
+honcho run ./manage.py collectstatic --noinput
 
 # restart gunicorn
 echo "Restarting gunicorn"
