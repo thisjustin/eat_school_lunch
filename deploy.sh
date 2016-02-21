@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # go to project directory
-cd $(honcho run printenv BASE_DIR)
+cd /home/ubuntu/www/eat/eat_school_lunch
 
 # activate python environment
-workon esl
+source /home/ubuntu/.virtualenvs/esl/bin/activate
 
 DEPLOY_ENV="$(honcho run printenv DJANGO_SETTINGS_MODULE)"
 while true; do
