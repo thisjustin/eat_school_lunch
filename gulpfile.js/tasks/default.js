@@ -12,3 +12,8 @@ gulp.task('stage', function(cb) {
     global.watch = false;
     gulpSequence('build:dev', cb);
 });
+
+gulp.task('prod', function(cb) {
+    global.watch = false;
+    gulpSequence('build:dev', cb);
+});
