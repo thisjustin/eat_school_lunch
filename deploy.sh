@@ -24,8 +24,8 @@ npm install
 honcho run ESL_ENV=prod && gulp prod
 
 # migrate pending database migrations and collect all static files
-honcho run ./manage.py migrate
-honcho run ./manage.py collectstatic --noinput
+honcho run python ./manage.py migrate
+honcho run python ./manage.py collectstatic --noinput
 
 # restart gunicorn
 echo "Restarting gunicorn"
@@ -35,6 +35,6 @@ then
     # because reload starts a new master process
     # but doesn't kill the previous master process
     # causing the two master processes to conflict.
-    stop esl-gunicorn
+    sudo stop esl-gunicorn
 fi
-start esl-gunicorn
+sudo start esl-gunicorn
