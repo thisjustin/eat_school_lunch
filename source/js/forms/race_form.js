@@ -8,13 +8,31 @@ module.exports = class RaceForm extends BaseForm {
         super(cfg);
     }
 
+    configureSteps() {
+        if (global.ESL.Apply.getApp().assistance_case_number) {
+            this.stepNumber = 4;
+            this.totalSteps = 7;
+        } else {
+            this.stepNumber = 9;
+            this.totalSteps = 12;
+        }
+
+        this.updateStep();
+    }
+
     show() {
         this.hideHelpIcon();
+        this.configureSteps();
         super.show();
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_INCOME);
+        // if case number or foster student take back to child names
+        if (global.ESL.Apply.getApp().assistance_case_number || global.ESL.Apply.isFosterStudent()) {
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
+        } else {
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_INCOME);
+        }
     }
 
     submit() {

@@ -6,15 +6,45 @@
     }
 }
 
+.help-tooltip {
+    display: none;
+    position: absolute;
+    background-color: rgba(0,0,0,0.9);
+    color: $white;
+
+    p {
+        width: 80%;
+        margin: 0 auto 1em auto;
+        font-size: 1.1em;
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2.5em;
+
+        &:hover {
+            color: $blue-gray;
+            cursor: pointer;
+        }
+    }
+
+    .triangle {
+        position: relative;
+        top: -27px;
+        left: 0.6em;
+    }
+
+}
+
 .step {
     text-align: center;
     padding: 2em;
     width: 90%;
+    max-width: 800px;
     margin: 0 auto;
-
-    &:not(.step-assistance) {
-        display: none;
-    }
+    display: none;
 
     h1 {
         margin: 0;
@@ -41,7 +71,7 @@
 
     .form-nav {
         margin: 5em auto 0 auto;
-        width: 70%;
+        width: 100%;
         @include clearfix();
 
         .btn-back {
@@ -63,11 +93,11 @@
         background-color: rgba(0,0,0,0.9);
         color: $white;
         transition: all 500ms ease-out;
-        padding-bottom: 0.5em;
+        padding-bottom: 1em;
 
         p {
             width: 80%;
-            margin: 0 auto;
+            margin: 0 auto 0.5em auto;
         }
 
         ul {
@@ -80,6 +110,7 @@
             position: absolute;
             top: 0;
             right: 0;
+            font-size: 2.5em;
 
             &:hover {
                 color: $blue-gray;
@@ -107,7 +138,7 @@
 }
 
 .step-case-number {
-    .form-group {
+    .form-group-text {
         display: none;
     }
 }
@@ -175,10 +206,15 @@
         text-align: left;
         width: 92%;
         margin: 0 auto;
+
+        h2 {
+            margin-bottom: 0;
+        }
     }
 
     .aside {
         font-weight: 400;
+        font-size: 0.75em;
     }
 }
 
@@ -197,7 +233,38 @@
 }
 
 .step-agreements {
+    .statement {
+        font-size: 1.2em;
+        color: $blue;
 
+        &:hover {
+            cursor: pointer;
+            color: $blue-dark;
+        }
+    }
+}
+
+.step-sign {
+    .household-size {
+        h3 {
+            margin-bottom: 0.5em;
+        }
+
+        .body-text {
+            font-size: 1.2em;
+            margin: 0;
+        }
+    }
+
+    .legal {
+        font-size: 1.1em;
+    }
+
+    .errors {
+        display: none;
+        margin: 1em 0;
+        color: red;
+    }
 }
 
 @media (max-width: $screen-xs-min) {
@@ -205,24 +272,37 @@
 }
 
 @media (min-width: $screen-sm-min) {
-
+    .step {
+        width: 80%;
+    }
 }
 
 @media (min-width: $screen-md-min) {
     .step {
-        width: 50%;
-        max-width: 800px;
+        width: 60%;
 
         .helper-text {
             left: 25%;
             width: 50%;
+        }
+
+        .form-nav {
+            width: 70%;
+        }
+    }
+
+    .help-tooltip {
+        .triangle {
+            top: -30px;
         }
     }
 
 }
 
 @media (min-width: $screen-lg-min) {
-
+    .step {
+        width: 50%;
+    }
 }
 
 @media (min-width: $screen-xl-min) {

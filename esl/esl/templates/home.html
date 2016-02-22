@@ -12,15 +12,11 @@
 {% block content %}
     {{ block.super }}
     <div class="home-wrapper">
-        {% block page-title %}
-            {% trans 'Fill out the 2016-2017 Application' %}
-        {% endblock page-title %}
-
         <section class="instructions">
             <h1>
                 {% trans 'Apply for Free & Reduced Price School Lunches' %}
             </h1>
-            <p>{% trans 'You Will Need' %}</p>
+            <h3>{% trans 'You Will Need' %}</h3>
             <ul>
                 <li>
                     {% trans 'Names of all household members' %}
@@ -32,7 +28,7 @@
                     {% trans 'Social Security Number of the signing adult (if they have one)' %}
                 </li>
                 <li>
-                    {% trans "The signing adult's contact info (TODO list specific items)" %}
+                    {% trans "The signing adult's contact info" %}
                 </li>
                 <li>
                     {% trans 'If you are an assistance program participant, you will need your case number. Assistance programs include: SNAP, FDPIR and TANF. It is OK if these programs do not apply to you.' %}
@@ -42,34 +38,46 @@
 
         <section class="start-cta">
             <a href="{% url 'apply' %}">
-                <div class="btn btn-primary">
-                    {% trans 'Start Application' %}
+                <div class="btn btn-success">
+                    <p>{% trans 'Start Application' %}</p>
                 </div>
             </a>
         </section>
 
         <section class="pdf-link">
-            <p>
-                {% trans 'Unable to Fill Out the Online Form?' %}
-            </p>
-            <a href="#">{% trans 'Download the PDF.' %}</a>
+            <div class="divider"></div>
+            <div class="pdf-link-container">
+                <i class="material-icons">picture_as_pdf</i>
+                <div class="pdf-info-container">
+                    <p>
+                        {% trans 'Unable to Fill Out the Online Form?' %}
+                    </p>
+                    <a href="{{ STATIC_URL }}images/2015-2016_school_lunch_application.pdf" target="_blank">{% trans 'Download the PDF' %}</a>
+                </div>
+            </div>
+            <div class="divider"></div>
         </section>
 
         <section class="additional-info">
-            <p>
-                {% blocktrans %}
-                    In the U.S. there are over 50 million children enrolled in public school.
-                    30 million of those children eat free or reduced priced lunches every day.
-                {% endblocktrans %}
-            </p>
-            <p>
-                {% blocktrans %}
-                    The Nation School Lunch program gets stronger every year because more and more families participate.
-                {% endblocktrans %}
-            </p>
-            <p>
-                {% trans 'Thanks for being part of it.' %}
-            </p>
+            <div class="info-container">
+                <img src="{{ STATIC_URL }}/images/superkid.png" alt="Super Kid!" />
+                <div class="text-container">
+                    <p class="italic">
+                        {% blocktrans %}
+                            In the U.S. there are over 50 million children enrolled in public school.
+                            30 million of those children eat free or reduced priced lunches every day.
+                        {% endblocktrans %}
+                    </p>
+                    <p class="italic">
+                        {% blocktrans %}
+                            The Nation School Lunch program gets stronger every year because more and more families participate.
+                        {% endblocktrans %}
+                    </p>
+                    <p>
+                        <strong>{% trans 'Thanks for being part of it.' %}</strong>
+                    </p>
+                </div>
+            </div>
         </section>
     </div>
 {% endblock content %}

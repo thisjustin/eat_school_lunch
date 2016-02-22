@@ -5,11 +5,49 @@ let BaseForm = require('./base_form');
 module.exports = class AssistanceForm extends BaseForm {
     constructor(cfg={}) {
         super(cfg);
+        this.toolTipShown = false;
+
+        this.configureEventHandlers();
+    }
+
+    configureEventHandlers() {
+        $('.help-tooltip .close').on('tap', function() {
+           $('.help-tooltip').hide();
+        });
     }
 
     show() {
+        let _this = this;
         this.showHelpIcon();
         super.show();
+
+        if (!this.toolTipShown) {
+            setTimeout(function() {
+                _this.showToolTip();
+            }, 1500);
+        }
+    }
+
+    showToolTip() {
+        let tooltip = $('.help-tooltip');
+        let help = $('.help');
+        let helpOffset = help.offset();
+        // calc position
+        let top = help.height() + helpOffset.top + 5;
+        let left = helpOffset.left;
+
+        tooltip.css({
+            top: top,
+            left: left
+        });
+
+        tooltip.fadeIn();
+
+        this.toolTipShown = true;
+
+        setTimeout(function() {
+            tooltip.fadeOut();
+        }, 10000);
     }
 
     submit() {
@@ -22,7 +60,6 @@ module.exports = class AssistanceForm extends BaseForm {
             // not a part of any assistance program
             global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
         }
-
     }
 
     getValidData() {

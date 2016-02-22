@@ -55,6 +55,7 @@ global.ESL.Apply = function() {
             this.setupForms();
             _currentStep = _assistanceForm;
             this.configureEventHandlers();
+            _currentStep.show();
         },
         setupForms: function setupForms() {
             _assistanceForm = new AssistanceForm({
@@ -66,7 +67,7 @@ global.ESL.Apply = function() {
             _caseNumberForm = new CaseNumberForm({
                 elem: '.step-case-number',
                 stepNumber: 2,
-                totalSteps: 6
+                totalSteps: 7
             });
 
             _householdAdultsForm = new HouseholdAdultsForm({
@@ -184,6 +185,7 @@ global.ESL.Apply = function() {
                     _currentStep = _adultIncomeForm;
                     break;
                 case _C.HOUSEHOLD_CHILDREN:
+                    console.log('hh child')
                     _currentStep = _householdChildrenForm;
                     break;
                 case _C.CHILDREN_CIRCUMSTANCES:
@@ -213,6 +215,16 @@ global.ESL.Apply = function() {
         },
         getApp: function getApp() {
             return _app;
+        },
+        isFosterStudent: function isFosterStudent() {
+            // is the form for one child who is a student and foster?
+            let fosterStudent = false;
+
+            if (_app.children && _app.children.length === 1 && _app.children[0].is_foster && _app.children[0].is_student) {
+                fosterStudent = true;
+            }
+
+            return fosterStudent;
         },
         updateApp: function updateApp(data) {
             // add new values to application data

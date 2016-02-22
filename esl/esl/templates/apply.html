@@ -38,15 +38,15 @@
             <div class="form-group">
                 <label>
                     <input type="radio" name="programs" value="SNAP"/>
-                    {% trans 'SNAP - Supplemental Nutrition Assistance Program' %}
+                    <strong>SNAP</strong> - Supplemental Nutrition Assistance Program
                 </label>
                 <label>
                     <input type="radio" name="programs" value="FDPIR"/>
-                    {% trans 'FDPIR - Food Distribution Program on Indian Reservations' %}
+                    <strong>FDPIR</strong> - Food Distribution Program on Indian Reservations
                 </label>
                 <label>
                     <input type="radio" name="programs" value="TANF"/>
-                    {% trans 'TANF - Temporary Assistance for Needy Families' %}
+                    <strong>TANF</strong> - Temporary Assistance for Needy Families
                 </label>
                 <label>
                     <input type="radio" name="programs" value="none" checked="true"/>
@@ -106,18 +106,18 @@
             </p>
         </section>
         <form>
-            <div class="form-group snap">
-                <h2>SNAP</h2>
+            <div class="form-group-text snap">
+                <h3>SNAP</h3>
                 <label for="snap-number">{% trans 'Supplemental Nutrition Assistance Program' %}</label>
                 <input class="form-control" type="text" name="snap-number" placeholder="Case Number" maxlength="255"/>
             </div>
-            <div class="form-group fdpir">
-                <h2>FDPIR</h2>
+            <div class="form-group-text fdpir">
+                <h3>FDPIR</h3>
                 <label for="fdpir-number">{% trans 'Food Distribution Program on Indian Reservations' %}</label>
                 <input class="form-control"  type="text" name="fdpir-number" placeholder="Case Number" maxlength="255"/>
             </div>
-            <div class="form-group tanf">
-                <h2>TANF</h2>
+            <div class="form-group-text tanf">
+                <h3>TANF</h3>
                 <label for="tanf-number">{% trans 'Temporary Assistance for Needy Families' %}</label>
                 <input class="form-control"  type="text" name="tanf-number" placeholder="Case Number" maxlength="255"/>
             </div>
@@ -677,9 +677,9 @@
             <h1>
                 {% trans "Children's Racial & Ethnic Identities" %}
             </h1>
-            <h2>
+            <h3>
                 {% trans 'Optional' %}
-            </h2>
+            </h3>
             <p class="body-text">
                 {% blocktrans %}
                     This information helps to make sure we are fully serving our community.
@@ -692,7 +692,7 @@
             <div class="form-group ethnicity">
                 <h2>
                     {% trans "Children's Ethnicity" %}
-                    <span class="aside">({% trans 'select one' %})</span>
+                    <span class="aside">({% trans 'optional - select one' %})</span>
                 </h2>
                 <label>
                     <input class="form-control" type="checkbox" name="hispanic"/>
@@ -706,7 +706,7 @@
             <div class="form-group race">
                 <h2>
                     {% trans "Children's Race" %}
-                    <span class="aside">({% trans 'select one or more' %})</span>
+                    <span class="aside">({% trans 'optional - select one or more' %})</span>
                 </h2>
                 <label>
                     <input class="form-control" type="checkbox" name="american-indian"/>
@@ -748,33 +748,34 @@
             </h1>
             <p class="body-text">
                 {% blocktrans %}
-                    Please enter your contact info.
+                    Please enter your contact info. All of the fields are optional, however
+                    filling this out will greatly assist our staff in contacting you.
                 {% endblocktrans %}
             </p>
         </section>
         <form class="form-set">
             <div class="form-group-text block">
-                <label for="street-address">{% trans 'Street Address' %}</label>
+                <label for="street-address">{% trans 'Street Address (optional)' %}</label>
                 <input class="form-control"  type="text" name="street-address" placeholder="1234 Sesame Street" maxlength="255"/>
             </div>
             <div class="form-group-text">
-                <label for="city">{% trans 'City' %}</label>
+                <label for="city">{% trans 'City (optional)' %}</label>
                 <input class="form-control"  type="text" name="city" placeholder="Fairview" maxlength="255"/>
             </div>
             <div class="form-group-text">
-                <label for="state">{% trans 'State' %}</label>
+                <label for="state">{% trans 'State (optional)' %}</label>
                 <input class="form-control"  type="text" name="state" placeholder="PA" maxlength="2"/>
             </div>
             <div class="form-group-text">
-                <label for="zip-code">{% trans 'Zip Code' %}</label>
+                <label for="zip-code">{% trans 'Zip Code (optional)' %}</label>
                 <input class="form-control"  type="text" name="zip-code" placeholder="12345" maxlength="5"/>
             </div>
             <div class="form-group-text">
-                <label for="phone-number">{% trans 'Phone Number' %}</label>
+                <label for="phone-number">{% trans 'Phone Number (optional)' %}</label>
                 <input class="form-control"  type="text" name="phone-number" placeholder="555-555-5555" maxlength="255"/>
             </div>
             <div class="form-group-text">
-                <label for="email">{% trans 'Email' %}</label>
+                <label for="email">{% trans 'Email (optional)' %}</label>
                 <input class="form-control"  type="email" name="email" placeholder="you@domain.com" maxlength="255"/>
             </div>
         </form>
@@ -814,7 +815,7 @@
             <div class="btn btn-back">
                 <p>{% trans 'Back' %}</p>
             </div>
-            <div class="btn btn-next">
+            <div class="btn btn-next disabled">
                 <p>{% trans 'Next' %}</p>
             </div>
         </section>
@@ -887,23 +888,28 @@
             </h1>
             <p class="body-text">
                 {% blocktrans %}
-                    As the signing adult, enter your name and today's date.
+                    As the signing adult confirm your household size, enter your name and today's date.
                 {% endblocktrans %}
             </p>
-            <p class="body-text">
-                The person signing is furnishing true information and to advise that person that the application is being made in connection with the receipt of Federal funds;
-                <br/>
-                School officials may verify the information on the application; and
-                <br/>
-                Deliberate misrepresentation of the information may subject the applicant to prosecution under State and Federal statutes.
+            <div class="household-size">
+                <h3>{% trans 'Household Size' %}</h3>
+                <p class="body-text">{% trans 'Total Adults:' %} <span class="total-adults">N/A</span></p>
+                <p class="body-text">{% trans 'Total Children:' %} <span class="total-children">N/A</span></p>
+            </div>
+            <p class="body-text legal">
+                {% blocktrans %}
+                    The person signing is furnishing true information and to advise that person that the application is being made in connection with the receipt of Federal funds;
+                    School officials may verify the information on the application; and
+                    Deliberate misrepresentation of the information may subject the applicant to prosecution under State and Federal statutes.
+                {% endblocktrans %}
             </p>
         </section>
-        <form>
-            <div class="form-group">
+        <form class="form-set">
+            <div class="form-group-text">
                 <label for="full-name">{% trans 'Full Name' %}</label>
                 <input class="form-control"  type="text" name="full-name" placeholder="John Doe"/>
             </div>
-            <div class="form-group">
+            <div class="form-group-text">
                 <label for="date">{% trans "Today's Date" %}</label>
                 <input class="form-control"  type="text" name="date" value="{% now 'Y-m-d' %}" disabled="disabled"/>
             </div>
@@ -914,8 +920,12 @@
                 <p>{% trans 'Back' %}</p>
             </div>
             <div class="btn btn-next disabled">
-                <p>{% trans 'Next' %}</p>
+                <p>{% trans 'Submit' %}</p>
             </div>
+        </section>
+        <section class="errors">
+            <h3>There was an error submitting your form.</h3>
+            <div class="error-output"></div>
         </section>
     </section>
 

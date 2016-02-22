@@ -18,7 +18,8 @@ module.exports = class CaseNumberForm extends BaseForm {
     }
 
     show() {
-        this.elem.find(`.form-group.${global.ESL.Apply.getApp().assistance_type.toLowerCase()}`).show();
+        this.elem.find(`.form-group-text.${global.ESL.Apply.getApp().assistance_type.toLowerCase()}`).show();
+        this.hideHelpIcon();
         super.show();
     }
 
@@ -29,7 +30,7 @@ module.exports = class CaseNumberForm extends BaseForm {
     submit() {
         super.submit();
 
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
+        global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
     }
 
     getValidData() {

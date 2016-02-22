@@ -1,1 +1,139 @@
 @import 'base';
+
+.global-header {
+    .home-intro {
+        display: inline-block;
+    }
+}
+
+.home-wrapper {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.instructions {
+    h1, h3 {
+        font-family: 'Lora', serif;
+    }
+
+    ul {
+        text-align: left;
+        width: 80%;
+        margin: 0 auto;
+        font-size: 1.2em;
+    }
+}
+
+.start-cta {
+    margin: 2em 0;
+
+    a {
+        display: inline-block;
+    }
+
+    .btn {
+        width: 20em;
+        height: 3.5em;
+
+        p {
+            text-transform: uppercase;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            padding: 0.85em 0;
+        }
+    }
+}
+
+.pdf-link {
+    text-align: center;
+
+    .pdf-link-container {
+        @include clearfix();
+        text-align: center;
+        padding: 0.5em 0;
+        display: inline-block;
+    }
+
+    i {
+        color: $blue-dark;
+        float: left;
+        font-size: 3em;
+    }
+
+    .pdf-info-container {
+        float: left;
+        margin-left: 1em;
+
+        p, a {
+            margin: 0;
+            font-size: 1.1em;
+        }
+    }
+}
+
+.additional-info {
+    font-family: 'Lora', serif;
+    text-align: center;
+    margin: 2em 0;
+
+    .info-container {
+        @include clearfix();
+        display: inline-block;
+        text-align: left;
+        width: 70%;
+    }
+
+    img {
+        float: left;
+        max-width: 30%;
+        max-height: 13em;
+        padding: 0 1em 1em 1em;
+    }
+
+    .text-container {
+        width: 70%;
+        float: left;
+        color: $gray;
+    }
+}
+
+@media (max-width: $screen-xs-min) {
+
+}
+
+@media (min-width: $screen-sm-min) {
+
+}
+
+@media (min-width: $screen-md-min) {
+    .home-wrapper {
+        width: 70%;
+    }
+
+    .instructions {
+        ul {
+            width: 70%;
+        }
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+    .instructions {
+        ul {
+            width: 60%;
+        }
+    }
+}
+
+@media (min-width: $screen-xl-min) {
+    .home-wrapper {
+        width: 60%;
+    }
+
+    .instructions {
+        ul {
+            width: 50%;
+        }
+    }
+}
