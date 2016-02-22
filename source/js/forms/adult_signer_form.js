@@ -22,7 +22,7 @@ module.exports = class AdultSignerForm extends BaseForm {
             });
         });
 
-        this.elem.find('form').html(output);
+        this.elem.find('form .form-group').html(output);
     }
 
     show() {

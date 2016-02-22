@@ -14,6 +14,15 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
         let _this = this;
 
         this.elem.find('input[type=checkbox]').on('change', function() {
+            let elem = $(this);
+
+            if (elem.attr('name') === 'none') {
+                // clear all other checkboxes
+                _this.elem.find('input[type=checkbox]').not('input[name=none]').removeProp('checked');
+            } else {
+                // clear none if any other choice selected
+                _this.elem.find('input[name=none]').removeProp('checked');
+            }
             _this.validate();
         });
     }

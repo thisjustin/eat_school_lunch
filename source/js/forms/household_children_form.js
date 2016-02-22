@@ -24,7 +24,7 @@ module.exports = class HouseholdChildrenForm extends BaseForm {
     }
 
     configureSteps() {
-        if (global.ESL.Apply.getApp().assistance_case_number) {
+        if (global.ESL.Apply.isInAssistanceProgram()) {
             this.stepNumber = 3;
             this.totalSteps = 7;
         } else {
@@ -41,7 +41,7 @@ module.exports = class HouseholdChildrenForm extends BaseForm {
     }
 
     back() {
-        if (global.ESL.Apply.getApp().assistance_case_number) {
+        if (global.ESL.Apply.isInAssistanceProgram()) {
             // if they have a case number skip other steps and go to the end
             global.ESL.Apply.showStep(global.ESL.Apply.getC().CASE_NUMBER);
         } else {
@@ -52,7 +52,7 @@ module.exports = class HouseholdChildrenForm extends BaseForm {
     submit() {
         super.submit();
 
-        if (global.ESL.Apply.getApp().assistance_case_number) {
+        if (global.ESL.Apply.isInAssistanceProgram()) {
             // if they have a case number skip other steps and go to the end
             global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
         } else {

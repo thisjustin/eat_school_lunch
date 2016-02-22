@@ -16,7 +16,7 @@ class AdultSerializer(serializers.ModelSerializer):
 class CoreApplicationSerializer(serializers.ModelSerializer):
     # nested objects in DRF     http://www.django-rest-framework.org/api-guide/relations/
     children = ChildSerializer(many=True)
-    adults = AdultSerializer(many=True)
+    adults = AdultSerializer(many=True, required=False)
 
     class Meta:
         model = CoreApplication
@@ -25,10 +25,10 @@ class CoreApplicationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         child_data = validated_data.pop('children')
-        adult_data = validated_data.pop('adults')
+        adult_data = validated_data.pop('adults') if validated_data.get('adults') else []
 
         core_app = CoreApplication.objects.create(**validated_data)
-        print '\n core app: ', core_app.__dict__
+
         for child in child_data:
             Child.objects.create(application=core_app, **child)
 
