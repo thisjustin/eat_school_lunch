@@ -39,6 +39,10 @@ body {
     border-bottom: 12px solid rgba(0,0,0,0.9);
 }
 
+.help-tooltip {
+    display: none;
+}
+
 a {
     color: $blue;
 }

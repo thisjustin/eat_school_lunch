@@ -50,6 +50,10 @@ module.exports = class AssistanceForm extends BaseForm {
         }, 10000);
     }
 
+    back() {
+        window.location.href = '/';
+    }
+
     submit() {
         super.submit();
 
