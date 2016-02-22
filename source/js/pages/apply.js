@@ -226,6 +226,15 @@ global.ESL.Apply = function() {
 
             return fosterStudent;
         },
+        isInAssistanceProgram: function isInAssistanceProgram() {
+            let result = false;
+
+            if (_app.assistance_type && _app.assistance_case_number) {
+                result = true;
+            }
+
+            return result;
+        },
         updateApp: function updateApp(data) {
             // add new values to application data
             $.extend(_app, data);

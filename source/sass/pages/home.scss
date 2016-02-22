@@ -88,13 +88,14 @@
         float: left;
         max-width: 30%;
         max-height: 13em;
-        padding: 0 1em 1em 1em;
+        padding: 1em;
     }
 
     .text-container {
         width: 70%;
         float: left;
         color: $gray;
+        font-size: 1.2em;
     }
 }
 

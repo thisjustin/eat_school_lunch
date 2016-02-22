@@ -15,7 +15,7 @@
     p {
         width: 80%;
         margin: 0 auto 1em auto;
-        font-size: 1.1em;
+        font-size: 1.2em;
     }
 
     .close {
@@ -41,7 +41,7 @@
 .step {
     text-align: center;
     padding: 2em;
-    width: 90%;
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
     display: none;
@@ -93,17 +93,19 @@
         background-color: rgba(0,0,0,0.9);
         color: $white;
         transition: all 500ms ease-out;
-        padding-bottom: 1em;
+        padding-bottom: 2em;
 
         p {
             width: 80%;
             margin: 0 auto 0.5em auto;
+            font-size: 1.2em;
         }
 
         ul {
             width: 80%;
             margin: 0 auto;
             text-align: left;
+            font-size: 1.2em;
         }
 
         .close, .close-step-helper {
@@ -157,6 +159,27 @@
     .form-group-text.income {
         display: block;
     }
+
+    input[type=radio] {
+        margin: 0 auto;
+    }
+
+    .form-group {
+        padding: 1em 0;
+        background-color: $gray-light;
+    }
+}
+
+.step-adult-signer {
+    .form-group {
+        text-align: left;
+        width: 75%;
+        margin: 0 auto;
+
+        label {
+            display: block;
+        }
+    }
 }
 
 .step-adult-signer-ssn {
@@ -193,6 +216,12 @@
     .form-group {
         text-align: left;
         width: 92%;
+        margin: 0 auto;
+    }
+}
+
+.step-children-income {
+    input[type=radio] {
         margin: 0 auto;
     }
 }

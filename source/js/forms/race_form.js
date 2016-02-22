@@ -9,7 +9,7 @@ module.exports = class RaceForm extends BaseForm {
     }
 
     configureSteps() {
-        if (global.ESL.Apply.getApp().assistance_case_number) {
+        if (global.ESL.Apply.isInAssistanceProgram()) {
             this.stepNumber = 4;
             this.totalSteps = 7;
         } else {
@@ -27,8 +27,8 @@ module.exports = class RaceForm extends BaseForm {
     }
 
     back() {
-        // if case number or foster student take back to child names
-        if (global.ESL.Apply.getApp().assistance_case_number || global.ESL.Apply.isFosterStudent()) {
+        // if in assistance or foster student take back to child names
+        if (global.ESL.Apply.isInAssistanceProgram() || global.ESL.Apply.isFosterStudent()) {
             global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
         } else {
             global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_INCOME);

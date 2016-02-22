@@ -10,7 +10,7 @@ module.exports = class ContactForm extends BaseForm {
     }
 
     configureSteps() {
-        if (global.ESL.Apply.getApp().assistance_case_number) {
+        if (global.ESL.Apply.isInAssistanceProgram()) {
             this.stepNumber = 5;
             this.totalSteps = 7;
         } else {

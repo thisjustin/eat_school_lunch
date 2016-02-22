@@ -23,8 +23,8 @@ class CoreApplication(models.Model):
 
     assistance_type = models.CharField(max_length=10, choices=ASSISTANCE_CHOICES, null=True)
     assistance_case_number = models.CharField(max_length=255, null=True, blank=True)
-    child_income = models.IntegerField()
-    child_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES)
+    child_income = models.IntegerField(null=True, blank=True)
+    child_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES, null=True, blank=True)
     # total_household_members = models.IntegerField()
     ssn_signer = models.IntegerField(null=True, blank=True)
     no_ssn = models.BooleanField(default=False)
@@ -37,18 +37,26 @@ class CoreApplication(models.Model):
     children_are_pacific_islander = models.BooleanField(default=False)
     children_are_white = models.BooleanField(default=False)
 
-    street_address = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=2)
-    zip_code = models.IntegerField()
-    phone_number = models.CharField(max_length=12)
-    email = models.EmailField()
+    street_address = models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(max_length=255, null=True, blank=True)
+    state = models.CharField(max_length=2, null=True, blank=True)
+    zip_code = models.CharField(max_length=10, null=True, blank=True)
+    phone_number = models.CharField(max_length=12, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     adult_name = models.CharField(max_length=255)
-    is_signed = models.BooleanField()
+    is_signed = models.BooleanField(default=False)
     signed_date = models.DateTimeField()
+
+    def __unicode__(self):
+        return '{0}-{1}'.format(self.pk, self.adult_name)
 
     class Meta:
         ordering = ('created_date',)
+        verbose_name = 'Application'
+
+    def clean(self):
+        # TODO add custom validation to account for various paths
+        pass
 
     def save(self, *args, **kwargs):
         super(CoreApplication, self).save(*args, **kwargs)
@@ -57,23 +65,32 @@ class CoreApplication(models.Model):
 class Child(models.Model):
     application = models.ForeignKey(CoreApplication, related_name='children')
     first_name = models.CharField(max_length=255)
-    middle_initial = models.CharField(max_length=1)
+    middle_initial = models.CharField(max_length=1, null=True, blank=True)
     last_name = models.CharField(max_length=255)
-    is_student = models.BooleanField()
-    is_foster = models.BooleanField()
-    is_head_start = models.BooleanField()
-    is_homeless_migrant_runaway = models.BooleanField()
+    is_student = models.BooleanField(default=False)
+    is_foster = models.BooleanField(default=False)
+    is_head_start = models.BooleanField(default=False)
+    is_homeless_migrant_runaway = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = 'children'
+
+    def __unicode__(self):
+        return '{0} {1} - app id: {2}'.format(self.first_name, self.last_name, self.application.pk)
 
 
 class Adult(models.Model):
     application = models.ForeignKey(CoreApplication, related_name='adults')
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    work_income = models.IntegerField()
-    work_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES)
-    public_income = models.IntegerField()
-    public_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES)
-    other_income = models.IntegerField()
-    other_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    work_income = models.IntegerField(null=True, blank=True)
+    work_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES, null=True, blank=True)
+    public_income = models.IntegerField(null=True, blank=True)
+    public_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES, null=True, blank=True)
+    other_income = models.IntegerField(null=True, blank=True)
+    other_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES, null=True, blank=True)
     is_signer = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return '{0} {1} - app id: {2}'.format(self.first_name, self.last_name, self.application.pk)
 

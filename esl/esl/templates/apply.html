@@ -209,7 +209,9 @@
             </p>
         </section>
 
-        <form></form>
+        <form>
+            <div class="form-group"></div>
+        </form>
 
         <section class="form-nav">
             <div class="btn btn-back">
@@ -382,7 +384,7 @@
                     annual rate of income, income shall be based on the projected annual household income.
                 {% endblocktrans %}
             </p>
-            <h3>Potential sources of income include</h3>
+            <h3>Potential Sources of Income Include</h3>
             <ul>
                 <li>Earnings from Work
             <ul>
@@ -504,13 +506,7 @@
                 {% trans "Child Circumstance" %}
             </h1>
             <p class="body-text">
-                {% blocktrans %}
-                    Do any of the following options describe
-                {% endblocktrans %}
-                <span class="child-name"></span>
-                {% blocktrans %}
-                ? Select one or many.
-                {% endblocktrans %}
+                {% trans 'Do any of the following options describe ' %}<span class="child-name"></span>{% trans '? Select one or many.' %}
             </p>
         </section>
         <form data-child-uid="">

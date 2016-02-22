@@ -26,3 +26,7 @@ urlpatterns = [
     url(r'^apply', ApplyView.as_view(), name='apply'),
 
 ]
+
+
+admin.site.site_header = 'Eat School Lunch Admin'
+admin.site.site_title = 'Eat School Lunch Admin'
