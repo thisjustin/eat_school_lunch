@@ -24,6 +24,25 @@ body {
     font-style: italic;
 }
 
+.divider {
+    background-color: $blue-light;
+    height: 2px;
+    width: 100%;
+    margin: 0.5em 0;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid rgba(0,0,0,0.9);
+}
+
+a {
+    color: $blue;
+}
+
 .global-header {
     background-color: $blue-light;
     border: 1px solid $blue-gray;
@@ -31,10 +50,25 @@ body {
     height: 4.5em;
     position: relative;
 
+    p {
+        display: none;
+        width: 100%;
+        text-align: center;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        font-size: 1.5em;
+        color: $off-black;
+        margin: 0.9em 0;
+    }
+
+    .home-intro {
+
+    }
+
     .help {
         display: none;
         font-size: 3em;
-        color: $blue-dark;
+        color: $green;
         position: absolute;
         left: 0.5em;
         top: 0.25em;
@@ -46,15 +80,6 @@ body {
     }
 
     .steps {
-        width: 100%;
-        text-align: center;
-        display: none;
-        font-family: 'Source Sans Pro', sans-serif;
-        font-weight: 400;
-        font-size: 1.5em;
-        color: $off-black;
-        margin: 0.9em 0;
-
         .current-step {
             margin: 0 0.1em 0 0.2em;
             display: inline-block;

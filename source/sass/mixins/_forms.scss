@@ -31,7 +31,7 @@
 }
 
 label {
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
     color: $off-black;
@@ -43,9 +43,10 @@ label {
 }
 
 .form-group-text {
-    display: inline-block;
+    display: block;
     padding: 0 1em;
     margin: 1em 0;
+    text-align: center;
 
     label {
         display: block;
@@ -59,7 +60,7 @@ label {
 
 .form-set {
     label {
-        text-align: left;
+        //text-align: left;
     }
 }
 
@@ -72,4 +73,31 @@ label {
         display: block;
         margin: 0 auto;
     }
+}
+
+input[type=radio], input[type=checkbox] {
+    margin: 0 0.5em;
+}
+
+@media (max-width: $screen-xs-min) {
+
+}
+
+@media (min-width: $screen-sm-min) {
+    .form-group-text {
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+@media (min-width: $screen-md-min) {
+
+}
+
+@media (min-width: $screen-lg-min) {
+
+}
+
+@media (min-width: $screen-xl-min) {
+
 }

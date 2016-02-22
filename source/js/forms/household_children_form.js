@@ -8,6 +8,7 @@ module.exports = class HouseholdChildrenForm extends BaseForm {
         super(cfg);
         this.childTemplate = this.elem.find('#child-name-template').html();
         this.configureEventHandlers();
+        this.configureSteps();
     }
 
     configureEventHandlers() {
@@ -22,19 +23,41 @@ module.exports = class HouseholdChildrenForm extends BaseForm {
         });
     }
 
+    configureSteps() {
+        if (global.ESL.Apply.getApp().assistance_case_number) {
+            this.stepNumber = 3;
+            this.totalSteps = 7;
+        } else {
+            this.stepNumber = 2;
+            this.totalSteps = 12;
+        }
+
+        this.updateStep();
+    }
+
     show() {
         this.showHelpIcon();
         super.show();
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ASSISTANCE);
+        if (global.ESL.Apply.getApp().assistance_case_number) {
+            // if they have a case number skip other steps and go to the end
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().CASE_NUMBER);
+        } else {
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().ASSISTANCE);
+        }
     }
 
     submit() {
         super.submit();
 
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_CIRCUMSTANCES);
+        if (global.ESL.Apply.getApp().assistance_case_number) {
+            // if they have a case number skip other steps and go to the end
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
+        } else {
+            global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_CIRCUMSTANCES);
+        }
     }
 
     addChild() {

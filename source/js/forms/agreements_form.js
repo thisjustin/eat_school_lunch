@@ -9,6 +9,18 @@ module.exports = class AgreementsForm extends BaseForm {
         this.configureEventHandlers();
     }
 
+    configureSteps() {
+        if (global.ESL.Apply.getApp().assistance_case_number) {
+            this.stepNumber = 6;
+            this.totalSteps = 7;
+        } else {
+            this.stepNumber = 11;
+            this.totalSteps = 12;
+        }
+
+        this.updateStep();
+    }
+
     configureEventHandlers() {
         let _this = this;
 
@@ -27,10 +39,15 @@ module.exports = class AgreementsForm extends BaseForm {
         this.elem.find('.use-info-statement .close').on('tap', function() {
             _this.elem.find('.use-info-statement').toggleClass('show');
         });
+
+        this.elem.find('input[type=checkbox]').on('change', function() {
+            _this.validate();
+        });
     }
 
     show() {
         this.hideHelpIcon();
+        this.configureSteps();
         super.show();
     }
 
@@ -44,7 +61,7 @@ module.exports = class AgreementsForm extends BaseForm {
     }
 
     getValidData() {
-        this.isValid = true;
+        this.isValid = this.elem.find('input[name=read-statements]').is(':checked');
 
         return {};
     }

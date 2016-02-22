@@ -9,6 +9,18 @@ module.exports = class ContactForm extends BaseForm {
         this.configureEventHandlers();
     }
 
+    configureSteps() {
+        if (global.ESL.Apply.getApp().assistance_case_number) {
+            this.stepNumber = 5;
+            this.totalSteps = 7;
+        } else {
+            this.stepNumber = 10;
+            this.totalSteps = 12;
+        }
+
+        this.updateStep();
+    }
+
     configureEventHandlers() {
         let _this = this;
 
@@ -19,6 +31,7 @@ module.exports = class ContactForm extends BaseForm {
 
     show() {
         this.hideHelpIcon();
+        this.configureSteps();
         super.show();
     }
 

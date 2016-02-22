@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Eat School Lunch entry from Justin and Emily",
   "main": "server.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +12,7 @@
     "url": ""
   },
   "author": "Justin McCammon",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": ""
   },
@@ -27,6 +28,7 @@
     "gulp-clean": "0.3.1",
     "gulp-define-module": "0.1.4",
     "gulp-ignore": "2.0.1",
+    "gulp-imagemin": "2.4.0",
     "gulp-notify": "2.2.0",
     "gulp-plumber": "1.0.1",
     "gulp-rename": "1.2.2",
