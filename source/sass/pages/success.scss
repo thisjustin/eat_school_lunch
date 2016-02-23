@@ -1,0 +1,91 @@
+@import 'base';
+
+.global-header {
+    .success-intro {
+        display: inline-block;
+    }
+}
+
+.success-wrapper {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.instructions {
+    text-align: center;
+
+    h1, h3 {
+        font-family: 'Lora', serif;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    img {
+        max-width: 30%;
+        max-height: 13em;
+        padding: 1em;
+    }
+}
+
+.pdf-link, .email-link {
+    text-align: center;
+
+    .pdf-link-container, .email-link-container {
+        @include clearfix();
+        text-align: left;
+        padding: 0.5em 0;
+        display: inline-block;
+    }
+
+    i {
+        color: $blue-dark;
+        float: left;
+        font-size: 3em;
+    }
+
+    .pdf-info-container, .email-info-container {
+        float: left;
+        margin-left: 1em;
+
+        p, a {
+            margin: 0;
+            font-size: 1.1em;
+        }
+    }
+}
+
+.additional-info {
+    font-family: 'Lora', serif;
+    text-align: left;
+    margin: 2em auto;
+    color: $gray;
+    font-size: 1.2em;
+    width: 90%;
+}
+
+@media (max-width: $screen-xs-min) {
+
+}
+
+@media (min-width: $screen-sm-min) {
+
+}
+
+@media (min-width: $screen-md-min) {
+    .success-wrapper, .additional-info {
+        width: 70%;
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+
+}
+
+@media (min-width: $screen-xl-min) {
+    .success-wrapper, .additional-info {
+        width: 60%;
+    }
+}

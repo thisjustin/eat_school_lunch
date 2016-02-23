@@ -72,11 +72,22 @@ class Child(models.Model):
     is_head_start = models.BooleanField(default=False)
     is_homeless_migrant_runaway = models.BooleanField(default=False)
 
+    @property
+    def export(self):
+        # for use in csv export
+        return '[id:{id}, name:{name}]'.format(
+            id=self.pk,
+            name='{0} {1}'.format(self.first_name, self.last_name)
+        )
+
     class Meta:
         verbose_name_plural = 'children'
 
     def __unicode__(self):
-        return '{0} {1} - app id: {2}'.format(self.first_name, self.last_name, self.application.pk)
+        return 'id:{id} {name}'.format(
+            id=self.pk,
+            name='{0} {1}'.format(self.first_name, self.last_name)
+        )
 
 
 class Adult(models.Model):
@@ -91,6 +102,17 @@ class Adult(models.Model):
     other_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES, null=True, blank=True)
     is_signer = models.BooleanField(default=False)
 
+    @property
+    def export(self):
+        # for use in csv export
+        return '[id:{id}, name:{name}]'.format(
+            id=self.pk,
+            name='{0} {1}'.format(self.first_name, self.last_name)
+        )
+
     def __unicode__(self):
-        return '{0} {1} - app id: {2}'.format(self.first_name, self.last_name, self.application.pk)
+        return 'id:{id} {name}'.format(
+            id=self.pk,
+            name='{0} {1}'.format(self.first_name, self.last_name)
+        )
 

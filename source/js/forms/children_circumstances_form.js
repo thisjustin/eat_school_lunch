@@ -32,6 +32,7 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
 
         if (this.child) {
             // update form with new child's info
+            $(window).scrollTop(0);
             this.elem.find('.child-name').text(`${this.child.first_name} ${this.child.last_name}`);
             this.elem.find('form').attr('data-child-uid', this.child.uid);
             this.elem.find('input[type=checkbox]').removeProp('checked');

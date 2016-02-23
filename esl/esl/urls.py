@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from esl.views import HomeView, ApplyView
+from esl.views import HomeView, ApplyView, SuccessView
 
 
 urlpatterns = [
@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^api/v1/', include('school_lunch.api.urls')),
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^apply', ApplyView.as_view(), name='apply'),
-
+    url(r'^success', SuccessView.as_view(), name='success'),
 ]
 
 

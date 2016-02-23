@@ -74,7 +74,7 @@
                     appropriate case numbers submitted on the application. The Assistance Programs are:
                 {% endblocktrans %}
             </p>
-            <ul>
+            <ul class="helper-list">
                 <li>
                     {% blocktrans %}
                         Supplemental Nutrition Assistance Program (SNAP) (formerly known as food stamps)
@@ -313,7 +313,7 @@
                 </label>
                 <div class="form-group-text income block">
                     <label>{% trans 'Income' %}</label>
-                    <input class="form-control" type="text" name="work-income" placeholder="0"/>
+                    <span class="dollar-input">$<input class="form-control" type="text" name="work-income" placeholder="100"/></span>
                 </div>
             </div>
             <div class="form-group adult-public-income">
@@ -336,7 +336,7 @@
                 </label>
                 <div class="form-group-text income">
                     <label>{% trans 'Income' %}</label>
-                    <input class="form-control" type="text" name="public-income" placeholder="0"/>
+                    <span class="dollar-input">$<input class="form-control" type="text" name="public-income" placeholder="100"/></span>
                 </div>
             </div>
             <div class="form-group adult-other-income block">
@@ -359,7 +359,7 @@
                 </label>
                 <div class="form-group-text income block">
                     <label>{% trans 'Income' %}</label>
-                    <input class="form-control" type="text" name="other-income" placeholder="0"/>
+                    <span class="dollar-input">$<input class="form-control" type="text" name="other-income" placeholder="100"/></span>
                 </div>
             </div>
         </form>
@@ -385,7 +385,7 @@
                 {% endblocktrans %}
             </p>
             <h3>Potential Sources of Income Include</h3>
-            <ul>
+            <ul class="helper-list">
                 <li>Earnings from Work
             <ul>
                 <li>Salary, wages, cash bonuses</li>
@@ -614,7 +614,7 @@
                 </label>
                <div class="form-group-text income block">
                     <label>{% trans 'Income' %}</label>
-                    <input class="form-control" type="text" name="income" placeholder="0"/>
+                    <span class="dollar-input">$<input class="form-control" type="text" name="income" placeholder="100"/></span>
                 </div>
             </div>
         </form>
@@ -637,7 +637,7 @@
                 {% endblocktrans %}
             </p>
             <h3>{% trans 'Examples Include' %}</h3>
-            <ul>
+            <ul class="helper-list">
                 <li>
                     {% blocktrans %}
                         A child has a job where they earn a salary or wages.
