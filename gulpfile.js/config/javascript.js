@@ -15,11 +15,6 @@ module.exports = _.assign({
         bundleConfigs: [
             // add every JS file we want compiled here (basically everything in source/js/pages)
             {
-                entries: config.sourceDirectory + '/js/pages/home.js',
-                dest: config.publicDirectory + '/js/pages',
-                outputName: 'home.js'
-            },
-            {
                 entries: config.sourceDirectory + '/js/pages/apply.js',
                 dest: config.publicDirectory + '/js/pages',
                 outputName: 'apply.js'

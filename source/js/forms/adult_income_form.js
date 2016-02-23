@@ -23,6 +23,7 @@ module.exports = class AdultIncomeForm extends BaseForm {
 
         if (this.adult) {
             // update form with new adult's info
+            $(window).scrollTop(0);
             this.elem.find('.adult-name').text(`${this.adult.first_name} ${this.adult.last_name}`);
             this.elem.find('form').attr('data-adult-uid', this.adult.uid);
             this.elem.find('input[type=text]').val('');

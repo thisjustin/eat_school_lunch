@@ -14,7 +14,6 @@ let RaceForm = require('../forms/race_form');
 let ContactForm = require('../forms/contact_form');
 let AgreementsForm = require('../forms/agreements_form');
 let SignForm = require('../forms/sign_form');
-let SuccessForm = require('../forms/success_form');
 
 global.ESL.Apply = function() {
     let _assistanceForm;
@@ -30,7 +29,6 @@ global.ESL.Apply = function() {
     let _contactForm;
     let _agreementsForm;
     let _signForm;
-    let _successForm;
     let _currentStep;
     let _app = {};
     let _C = { // constants
@@ -46,15 +44,14 @@ global.ESL.Apply = function() {
         RACE: 'RACE',
         CONTACT: 'CONTACT',
         AGREEMENTS: 'AGREEMENTS',
-        SIGN: 'SIGN',
-        SUCCESS: 'SUCCESS'
+        SIGN: 'SIGN'
     };
 
     return {
         init: function init(cfg={}) {
             this.setupForms();
-            _currentStep = _assistanceForm;
             this.configureEventHandlers();
+            _currentStep = _assistanceForm;
             _currentStep.show();
         },
         setupForms: function setupForms() {
@@ -136,14 +133,8 @@ global.ESL.Apply = function() {
                 stepNumber: 12,
                 totalSteps: 12
             });
-
-            _successForm = new SuccessForm({
-                elem: '.step-success'
-            });
         },
         configureEventHandlers: function configureEventHandlers() {
-            let _this = this;
-
             $('.global-header .help').on('tap', function() {
                 _currentStep.showHelperText();
             });
@@ -152,18 +143,17 @@ global.ESL.Apply = function() {
                 _currentStep.hideHelperText();
             });
 
-            $('.btn-next').on('tap', function(e) {
-                let step = $(e.currentTarget).parents('.step').attr('data-step');
-
+            $('.btn-next').on('tap', function() {
                 _currentStep.submit();
             });
 
-            $('.btn-back').on('tap', function(e) {
+            $('.btn-back').on('tap', function() {
                 _currentStep.back();
             });
         },
         showStep: function showStep(step) {
             $('.step').hide();
+            $(window).scrollTop(0);
 
             switch (step) {
                 case _C.ASSISTANCE:
@@ -185,7 +175,6 @@ global.ESL.Apply = function() {
                     _currentStep = _adultIncomeForm;
                     break;
                 case _C.HOUSEHOLD_CHILDREN:
-                    console.log('hh child')
                     _currentStep = _householdChildrenForm;
                     break;
                 case _C.CHILDREN_CIRCUMSTANCES:
@@ -206,14 +195,12 @@ global.ESL.Apply = function() {
                 case _C.SIGN:
                     _currentStep = _signForm;
                     break;
-                case _C.SUCCESS:
-                    _currentStep = _successForm;
-                    break;
             }
 
             _currentStep.show();
         },
         getApp: function getApp() {
+            // get the current application data
             return _app;
         },
         isFosterStudent: function isFosterStudent() {
@@ -227,6 +214,7 @@ global.ESL.Apply = function() {
             return fosterStudent;
         },
         isInAssistanceProgram: function isInAssistanceProgram() {
+            // has the user entered the required info for being in an assistance program?
             let result = false;
 
             if (_app.assistance_type && _app.assistance_case_number) {

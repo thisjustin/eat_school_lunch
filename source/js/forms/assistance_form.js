@@ -12,7 +12,7 @@ module.exports = class AssistanceForm extends BaseForm {
 
     configureEventHandlers() {
         $('.help-tooltip .close').on('tap', function() {
-           $('.help-tooltip').hide();
+           $('.help-tooltip').fadeOut(100);
         });
     }
 

@@ -5,3 +5,6 @@ class HomeView(TemplateView):
 
 class ApplyView(TemplateView):
     template_name = 'apply.html'
+
+class SuccessView(TemplateView):
+    template_name = 'success.html'

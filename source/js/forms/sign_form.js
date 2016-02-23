@@ -63,7 +63,7 @@ module.exports = class SignForm extends BaseForm {
             method: 'POST',
             data: JSON.stringify(global.ESL.Apply.getApp())
         }).success(function(data) {
-            global.ESL.Apply.showStep(global.ESL.Apply.getC().SUCCESS);
+            window.location.href = '/success';
         }).fail(function(data) {
            _this.handleSubmissionError(data);
         });

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock head %}
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/success.css" />
+{% endblock css %}
+
+{% block content %}
+    {{ block.super }}
+    <div class="success-wrapper">
+        <section class="instructions">
+            <h1>
+                {% trans 'Success!' %}
+            </h1>
+            <p>{% trans 'You have successfully submitted the 2016-2017 School Lunch Application' %}</p>
+            <img src="{{ STATIC_URL }}/images/superkid.png" alt="Super Kid!" />
+        </section>
+
+        <section class="pdf-link">
+            <div class="divider"></div>
+            <div class="pdf-link-container">
+                <i class="material-icons">picture_as_pdf</i>
+                <div class="pdf-info-container">
+                    <p>
+                        {% trans 'PDF' %}
+                    </p>
+                    <a href="#">{% trans 'Download Your Application as a PDF to Save it for Your Records (not active in demo)' %}</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="email-link">
+            <div class="divider"></div>
+            <div class="email-link-container">
+                <i class="material-icons">email</i>
+                <div class="email-info-container">
+                    <p>
+                        {% trans 'Email' %}
+                    </p>
+                    <p>
+                        {% blocktrans %}
+                            If you entered an email you will automatically be sent a copy. (not active in demo)
+                        {% endblocktrans %}
+                    </p>
+                    <a href="#">{% trans 'Click here if you want to send a copy to another email. (not active in demo)' %}</a>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </section>
+
+        <section class="additional-info">
+            <p class="italic">{% trans 'What next?' %}</p>
+            <p>
+                {% blocktrans %}
+                    Your school district will review your application and let you know if your household
+                    qualifies for free or reduced priced lunches.
+                {% endblocktrans %}
+            </p>
+        </section>
+    </div>
+{% endblock content %}
+
+{% block js %}
+    {{ block.super }}
+{% endblock js %}
