@@ -28,7 +28,7 @@
                     {% trans 'Social Security Number of the signing adult (if they have one)' %}
                 </li>
                 <li>
-                    {% trans "The signing adult's contact info" %}
+                    {% trans "The signing adult's contact info (address, phone, email if available)" %}
                 </li>
                 <li>
                     {% trans 'If you are an assistance program participant, you will need your case number. Assistance programs include: SNAP, FDPIR and TANF. It is OK if these programs do not apply to you.' %}
@@ -79,6 +79,12 @@
                 </div>
             </div>
         </section>
+        <p class="contact-help">
+            {% blocktrans %}
+                If you need assistance with this form please contact your local district representative,
+                John Doe at: <br> <a href="#">john.doe@district.edu</a> or 555-555-5555.
+            {% endblocktrans %}
+        </p>
     </div>
 {% endblock content %}
 
