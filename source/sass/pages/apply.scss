@@ -4,6 +4,10 @@
     .help, .steps {
         display: inline-block;
     }
+
+    .current-step, .step-of, .total-steps {
+        display: none;
+    }
 }
 
 .help-tooltip {
@@ -90,8 +94,9 @@
         top: 0;
         left: 10%;
         width: 80%;
-        background-color: rgba(0,0,0,0.9);
+        background-color: $off-black;
         color: $white;
+        font-weight: 300;
         transition: all 500ms ease-out;
         padding-bottom: 2em;
 
@@ -136,6 +141,12 @@
         text-align: left;
         width: 92%;
         margin: 0 auto;
+    }
+
+    .instructions {
+        .body-text.italic {
+            font-size: 1.1em;
+        }
     }
 }
 

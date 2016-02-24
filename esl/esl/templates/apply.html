@@ -744,34 +744,34 @@
             </h1>
             <p class="body-text">
                 {% blocktrans %}
-                    Please enter your contact info. All of the fields are optional, however
+                    Please enter your contact info. All of the fields are <strong>optional</strong>, however
                     filling this out will greatly assist our staff in contacting you.
                 {% endblocktrans %}
             </p>
         </section>
         <form class="form-set">
             <div class="form-group-text block">
-                <label for="street-address">{% trans 'Street Address (optional)' %}</label>
+                <label for="street-address">{% trans 'Street Address' %}</label>
                 <input class="form-control"  type="text" name="street-address" placeholder="1234 Sesame Street" maxlength="255"/>
             </div>
             <div class="form-group-text">
-                <label for="city">{% trans 'City (optional)' %}</label>
+                <label for="city">{% trans 'City' %}</label>
                 <input class="form-control"  type="text" name="city" placeholder="Fairview" maxlength="255"/>
             </div>
             <div class="form-group-text">
-                <label for="state">{% trans 'State (optional)' %}</label>
+                <label for="state">{% trans 'State' %}</label>
                 <input class="form-control"  type="text" name="state" placeholder="PA" maxlength="2"/>
             </div>
             <div class="form-group-text">
-                <label for="zip-code">{% trans 'Zip Code (optional)' %}</label>
+                <label for="zip-code">{% trans 'Zip Code' %}</label>
                 <input class="form-control"  type="text" name="zip-code" placeholder="12345" maxlength="5"/>
             </div>
             <div class="form-group-text">
-                <label for="phone-number">{% trans 'Phone Number (optional)' %}</label>
+                <label for="phone-number">{% trans 'Phone Number' %}</label>
                 <input class="form-control"  type="text" name="phone-number" placeholder="555-555-5555" maxlength="255"/>
             </div>
             <div class="form-group-text">
-                <label for="email">{% trans 'Email (optional)' %}</label>
+                <label for="email">{% trans 'Email' %}</label>
                 <input class="form-control"  type="email" name="email" placeholder="you@domain.com" maxlength="255"/>
             </div>
         </form>
