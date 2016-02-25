@@ -52,12 +52,12 @@ module.exports = class AgreementsForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CONTACT);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().CONTACT, back: true});
     }
 
     submit() {
         super.submit();
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().SIGN);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().SIGN});
     }
 
     getValidData() {

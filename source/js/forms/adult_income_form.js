@@ -18,8 +18,9 @@ module.exports = class AdultIncomeForm extends BaseForm {
         });
     }
 
-    updateForm() {
-        this.adult = this.checkForIncompleteAdults();
+    updateForm(cfg={}) {
+        let back = (cfg.back === undefined) ? false : cfg.back;
+        this.adult = this.checkForIncompleteAdults(back);
 
         if (this.adult) {
             // update form with new adult's info
@@ -31,14 +32,23 @@ module.exports = class AdultIncomeForm extends BaseForm {
             this.elem.find('input[type=radio][value=monthly]').prop('checked', true);
         } else {
             // no more adults to update, go to next step
-            global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
+            global.ESL.Apply.showStep({step: global.ESL.Apply.getC().RACE});
         }
     }
 
-    checkForIncompleteAdults() {
+    checkForIncompleteAdults(back) {
         // are there additional adults in household without income info?
         // returns adult that needs info or false
-        let adults = _.find(global.ESL.Apply.getApp().adults, {income_complete: false});
+        let adults = {};
+
+        if (back) {
+            // user pressed back to get to this view, just show an adult
+            if (global.ESL.Apply.getApp().adults.length > 0) {
+                adults = global.ESL.Apply.getApp().adults[0];
+            }
+        } else {
+            adults = _.find(global.ESL.Apply.getApp().adults, {income_complete: false});
+        }
 
         if (adults !== undefined) {
             return adults;
@@ -47,14 +57,14 @@ module.exports = class AdultIncomeForm extends BaseForm {
         }
     }
 
-    show() {
-        this.updateForm();
+    show(cfg={}) {
+        this.updateForm(cfg);
         this.showHelpIcon();
         super.show();
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_SIGNER_SSN);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().ADULT_SIGNER_SSN, back: true});
     }
 
     submit() {

@@ -48,7 +48,7 @@ module.exports = class SignForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().AGREEMENTS);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().AGREEMENTS, back: true});
     }
 
     submit() {

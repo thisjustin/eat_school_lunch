@@ -21,7 +21,7 @@ class CoreApplication(models.Model):
     last_modified_date = models.DateTimeField(auto_now=True)
     approved_date = models.DateTimeField(null=True, blank=True)
 
-    assistance_type = models.CharField(max_length=10, choices=ASSISTANCE_CHOICES, null=True)
+    assistance_type = models.CharField(max_length=10, choices=ASSISTANCE_CHOICES, null=True, blank=True)
     assistance_case_number = models.CharField(max_length=255, null=True, blank=True)
     child_income = models.IntegerField(null=True, blank=True)
     child_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES, null=True, blank=True)

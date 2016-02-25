@@ -24,13 +24,13 @@ module.exports = class CaseNumberForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ASSISTANCE);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().ASSISTANCE, back: true});
     }
 
     submit() {
         super.submit();
 
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().HOUSEHOLD_CHILDREN});
     }
 
     getValidData() {

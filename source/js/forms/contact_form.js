@@ -36,12 +36,12 @@ module.exports = class ContactForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().RACE, back: true});
     }
 
     submit() {
         super.submit();
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().AGREEMENTS);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().AGREEMENTS});
     }
 
     getValidData() {

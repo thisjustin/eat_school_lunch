@@ -29,16 +29,16 @@ module.exports = class RaceForm extends BaseForm {
     back() {
         // if in assistance or foster student take back to child names
         if (global.ESL.Apply.isInAssistanceProgram() || global.ESL.Apply.isFosterStudent()) {
-            global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
+            global.ESL.Apply.showStep({step: global.ESL.Apply.getC().HOUSEHOLD_CHILDREN, back: true});
         } else {
-            global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_INCOME);
+            global.ESL.Apply.showStep({step: global.ESL.Apply.getC().ADULT_INCOME, back: true});
         }
     }
 
     submit() {
         super.submit();
 
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CONTACT);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().CONTACT});
     }
 
     getValidData() {
@@ -59,10 +59,12 @@ module.exports = class RaceForm extends BaseForm {
 
             switch(elem.attr('name')) {
                 case 'hispanic':
-                    childrenAreHispanic = true;
-                    break;
-                case 'not-hispanic':
-                    childrenNotHispanic = true;
+                    // this one is radio button set
+                    if(elem.val() === 'hispanic') {
+                        childrenAreHispanic = true;
+                    } else {
+                        childrenNotHispanic = true;
+                    }
                     break;
                 case 'american-indian':
                     childrenAreAmericanIndian = true;
