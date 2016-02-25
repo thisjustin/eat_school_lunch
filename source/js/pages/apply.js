@@ -14,6 +14,7 @@ let RaceForm = require('../forms/race_form');
 let ContactForm = require('../forms/contact_form');
 let AgreementsForm = require('../forms/agreements_form');
 let SignForm = require('../forms/sign_form');
+let _ = require('lodash');
 
 global.ESL.Apply = function() {
     let _assistanceForm;
@@ -144,14 +145,23 @@ global.ESL.Apply = function() {
             });
 
             $('.btn-next').on('tap', function() {
+                if ($(this).hasClass('disabled')) {
+                    return;
+                }
                 _currentStep.submit();
             });
 
             $('.btn-back').on('tap', function() {
+                if ($(this).hasClass('disabled')) {
+                    return;
+                }
                 _currentStep.back();
             });
         },
-        showStep: function showStep(step) {
+        showStep: function showStep(cfg={}) {
+            let step = cfg.step;
+            let back = (cfg.back === undefined) ? false : cfg.back;
+
             $('.step').hide();
             $(window).scrollTop(0);
 
@@ -197,7 +207,7 @@ global.ESL.Apply = function() {
                     break;
             }
 
-            _currentStep.show();
+            _currentStep.show({back: back});
         },
         getApp: function getApp() {
             // get the current application data
@@ -229,6 +239,16 @@ global.ESL.Apply = function() {
         },
         getC: function getC() {
             return _C;
+        },
+        removeChild: function removeChild(uid) {
+            _.remove(_app.children, function(c) {
+                return c.uid === uid;
+            });
+        },
+        removeAdult: function removeAdult(uid) {
+            _.remove(_app.adults, function(a) {
+                return a.uid === uid;
+            });
         }
     };
 }();

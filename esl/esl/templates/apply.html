@@ -146,6 +146,7 @@
         </section>
         <form>
             <div class="form-set">
+                <i class="material-icons delete">close</i>
                 <div class="form-group-text adults-first-name">
                     <label>{% trans 'Adult First Name' %}</label>
                     <input class="form-control"  type="text" name="adult-first-name" placeholder="Jane" maxlength="255"/>
@@ -172,6 +173,7 @@
 
         <script type="x/esl-template" id="adult-full-name-template">
             <div class="form-set">
+                <i class="material-icons delete">close</i>
                 <div class="form-group-text adults-first-name">
                     <label>{% trans 'Adult First Name' %}</label>
                     <input class="form-control"  type="text" name="adult-first-name" placeholder="Jane" maxlength="255"/>
@@ -441,6 +443,7 @@
         </section>
         <form>
             <div class="form-set">
+                <i class="material-icons delete">close</i>
                 <div class="form-group-text child-first-name">
                     <label for="child-first-name">{% trans 'First Name' %}</label>
                     <input class="form-control"  type="text" name="child-first-name" placeholder="John" maxlength="255"/>
@@ -471,6 +474,7 @@
 
         <script type="x/esl-template" id="child-name-template">
             <div class="form-set">
+                <i class="material-icons delete">close</i>
                 <div class="form-group-text child-first-name">
                     <label for="child-first-name">{% trans 'First Name' %}</label>
                     <input class="form-control"  type="text" name="child-first-name" placeholder="John" maxlength="255"/>
@@ -691,11 +695,11 @@
                     <span class="aside">({% trans 'optional - select one' %})</span>
                 </h2>
                 <label>
-                    <input class="form-control" type="checkbox" name="hispanic"/>
+                    <input class="form-control" type="radio" name="hispanic" value="hispanic"/>
                     {% trans 'Hispanic or Latino' %}
                 </label>
                 <label>
-                    <input class="form-control" type="checkbox" name="not-hispanic"/>
+                    <input class="form-control" type="radio" name="hispanic" value="not-hispanic"/>
                     {% trans 'Not Hispanic or Latino' %}
                 </label>
             </div>
@@ -768,7 +772,7 @@
             </div>
             <div class="form-group-text">
                 <label for="phone-number">{% trans 'Phone Number' %}</label>
-                <input class="form-control"  type="text" name="phone-number" placeholder="555-555-5555" maxlength="255"/>
+                <input class="form-control"  type="text" name="phone-number" placeholder="555-555-5555" maxlength="12"/>
             </div>
             <div class="form-group-text">
                 <label for="email">{% trans 'Email' %}</label>

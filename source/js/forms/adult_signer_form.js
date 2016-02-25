@@ -32,13 +32,13 @@ module.exports = class AdultSignerForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_ADULTS);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().HOUSEHOLD_ADULTS, back: true});
     }
 
     submit() {
         super.submit();
 
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_SIGNER_SSN);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().ADULT_SIGNER_SSN});
     }
 
     getValidData() {

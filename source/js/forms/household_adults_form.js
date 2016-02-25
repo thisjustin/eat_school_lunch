@@ -13,12 +13,20 @@ module.exports = class HouseholdAdultsForm extends BaseForm {
     configureEventHandlers() {
         let _this = this;
 
-        this.elem.find('input[type=text]').on('keyup', function() {
+        this.elem.on('keyup', 'input[type=text]', function() {
             _this.validate();
         });
 
         this.elem.find('.add-adult').on('tap', function() {
             _this.addAdult();
+        });
+
+        this.elem.on('tap', '.form-set .delete', function(e) {
+            let formset = $(e.currentTarget).parents('.form-set');
+            let uid = formset.attr('data-uid');
+
+            formset.remove();
+            _this.removeAdult(uid);
         });
     }
 
@@ -28,17 +36,24 @@ module.exports = class HouseholdAdultsForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_INCOME);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().CHILDREN_INCOME, back: true});
     }
 
     submit() {
         super.submit();
 
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().ADULT_SIGNER);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().ADULT_SIGNER});
+
+        this.elem.find('.form-set').addClass('created');
     }
 
     addAdult() {
         this.elem.find('.add-adult').before(this.adultTemplate);
+    }
+
+    removeAdult(uid) {
+        global.ESL.Apply.removeAdult(uid);
+        this.validate();
     }
 
     getValidData() {
@@ -46,16 +61,22 @@ module.exports = class HouseholdAdultsForm extends BaseForm {
         let adults = [];
 
         $.each(adultNames, function(idx, adult) {
-            let firstName = $(adult).find('input[name=adult-first-name]').val();
-            let lastName = $(adult).find('input[name=adult-last-name]').val();
+            let elem = $(adult);
+            let firstName = elem.find('input[name=adult-first-name]').val();
+            let lastName = elem.find('input[name=adult-last-name]').val();
 
             if (firstName.length > 0 && lastName.length > 0) {
+                let uid = (elem.attr('data-uid')) ? elem.attr('data-uid') : uuid.v4(); // give each adult a unique id
+
                 adults.push({
-                    uid: uuid.v4(), // give each adult a unique identifier
+                    uid: uid,
                     first_name: firstName,
                     last_name: lastName,
                     income_complete: false
                 });
+
+                // update DOM with uid of adult so they can be removed if needed
+                elem.attr('data-uid', uid);
             }
         });
 

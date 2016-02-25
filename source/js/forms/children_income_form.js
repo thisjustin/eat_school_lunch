@@ -23,12 +23,12 @@ module.exports = class ChildrenIncomeForm extends BaseForm {
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_CIRCUMSTANCES);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().CHILDREN_CIRCUMSTANCES, back: true});
     }
 
     submit() {
         super.submit();
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_ADULTS);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().HOUSEHOLD_ADULTS});
     }
 
     getValidData() {

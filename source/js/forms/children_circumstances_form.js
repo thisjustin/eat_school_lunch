@@ -27,8 +27,9 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
         });
     }
 
-    updateForm() {
-        this.child = this.checkForIncompleteChildren();
+    updateForm(cfg={}) {
+        let back = (cfg.back === undefined) ? false : cfg.back;
+        this.child = this.checkForIncompleteChildren(back);
 
         if (this.child) {
             // update form with new child's info
@@ -39,25 +40,33 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
         } else {
             // no more children to update, go to next step
             if (global.ESL.Apply.getApp().children.length > 1) {
-                global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_INCOME);
+                global.ESL.Apply.showStep({step: global.ESL.Apply.getC().CHILDREN_INCOME});
             } else {
                 let child = global.ESL.Apply.getApp().children[0];
 
                 if (child && child.is_student && child.is_foster) {
                     // application is only for a student foster child, skip to end
-                    global.ESL.Apply.showStep(global.ESL.Apply.getC().RACE);
+                    global.ESL.Apply.showStep({step: global.ESL.Apply.getC().RACE});
                 } else {
-                    global.ESL.Apply.showStep(global.ESL.Apply.getC().CHILDREN_INCOME);
+                    global.ESL.Apply.showStep({step: global.ESL.Apply.getC().CHILDREN_INCOME});
                 }
             }
 
         }
     }
 
-    checkForIncompleteChildren() {
+    checkForIncompleteChildren(back) {
         // are there additional children in household without circumstance info?
         // returns child that needs info or false
-        let children = _.find(global.ESL.Apply.getApp().children, {circumstances_complete: false});
+        let children = {};
+        if (back) {
+            // user pressed back to get to this view, just show a child
+            if (global.ESL.Apply.getApp().children.length > 0) {
+                children = global.ESL.Apply.getApp().children[0];
+            }
+        } else {
+            children = _.find(global.ESL.Apply.getApp().children, {circumstances_complete: false});
+        }
 
         if (children !== undefined) {
             return children;
@@ -66,14 +75,14 @@ module.exports = class ChildrenCircumstancesForm extends BaseForm {
         }
     }
 
-    show() {
-        this.updateForm();
+    show(cfg={}) {
+        this.updateForm(cfg);
         this.showHelpIcon();
         super.show();
     }
 
     back() {
-        global.ESL.Apply.showStep(global.ESL.Apply.getC().HOUSEHOLD_CHILDREN);
+        global.ESL.Apply.showStep({step: global.ESL.Apply.getC().HOUSEHOLD_CHILDREN, back: true});
     }
 
     submit() {
