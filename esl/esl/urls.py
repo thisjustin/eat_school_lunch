@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.http import HttpResponse
 from esl.views import HomeView, ApplyView, SuccessView
 
 
 urlpatterns = [
+    # simple way to block all robots
+    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", content_type="text/plain")),
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/', include('school_lunch.api.urls')),
     url(r'^$', HomeView.as_view(), name='home'),

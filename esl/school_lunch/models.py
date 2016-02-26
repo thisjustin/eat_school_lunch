@@ -25,7 +25,6 @@ class CoreApplication(models.Model):
     assistance_case_number = models.CharField(max_length=255, null=True, blank=True)
     child_income = models.IntegerField(null=True, blank=True)
     child_income_frequency = models.CharField(max_length=15, choices=INCOME_FREQ_CHOICES, null=True, blank=True)
-    # total_household_members = models.IntegerField()
     ssn_signer = models.IntegerField(null=True, blank=True)
     no_ssn = models.BooleanField(default=False)
 
@@ -54,9 +53,6 @@ class CoreApplication(models.Model):
         ordering = ('created_date',)
         verbose_name = 'Application'
 
-    def clean(self):
-        # TODO add custom validation to account for various paths
-        pass
 
     def save(self, *args, **kwargs):
         super(CoreApplication, self).save(*args, **kwargs)

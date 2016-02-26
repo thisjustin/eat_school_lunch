@@ -36,7 +36,7 @@ class CoreApplicationAdmin(ImportExportModelAdmin):
     resource_class = CoreApplicationResource
     list_display = ('adult_name', 'created_date', 'approved_date')
     search_fields = ('=adult_name', 'id', '=email', '=children__first_name', '=children__last_name', '=adults__first_name', '=adults__last_name')
-    list_filter = ('children', 'adults',)
+    list_filter = ('assistance_type',)
     inlines = [ChildInline, AdultInline]
 
 
