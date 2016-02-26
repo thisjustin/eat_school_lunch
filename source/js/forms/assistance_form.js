@@ -47,7 +47,7 @@ module.exports = class AssistanceForm extends BaseForm {
 
         setTimeout(function() {
             tooltip.fadeOut();
-        }, 10000);
+        }, 5000);
     }
 
     back() {

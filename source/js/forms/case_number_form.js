@@ -18,6 +18,7 @@ module.exports = class CaseNumberForm extends BaseForm {
     }
 
     show() {
+        this.elem.find('.form-group-text').hide();
         this.elem.find(`.form-group-text.${global.ESL.Apply.getApp().assistance_type.toLowerCase()}`).show();
         this.hideHelpIcon();
         super.show();
